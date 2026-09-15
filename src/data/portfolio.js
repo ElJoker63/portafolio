@@ -29,7 +29,7 @@ export const terminalLines = [
   { type: 'cmd', text: 'cat focus.txt' },
   { type: 'out', text: 'Python · FastAPI · Docker · Redis · Qdrant · Linux' },
   { type: 'cmd', text: 'systemctl status dev-passion' },
-  { type: 'ok', text: 'active (running) · 100% autodidacta · AEware Developers' }
+  { type: 'ok', text: 'active (running) · backend & infra · AEware Developers' }
 ]
 
 export const marqueeSkills = [
