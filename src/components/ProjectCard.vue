@@ -1,5 +1,7 @@
 <script setup>
 import { computed } from 'vue'
+import { ui } from '../data/portfolio.js'
+import { useI18n } from '../lib/i18n.js'
 import { useGitHub } from '../lib/github.js'
 import SvgIcon from './SvgIcon.vue'
 
@@ -7,6 +9,7 @@ const props = defineProps({
   project: { type: Object, required: true }
 })
 
+const { t } = useI18n()
 const { getRepoStars, isSynced } = useGitHub()
 
 // Estrellas reactivas: obtiene las de la API de GitHub en vivo con fallback local
@@ -20,7 +23,7 @@ const currentStars = computed(() => {
     <div class="card__top">
       <div class="card__badges">
         <span class="icon-badge"><SvgIcon :name="project.icon" :size="20" /></span>
-        <span v-if="project.featured" class="card__featured mono">Destacado</span>
+        <span v-if="project.featured" class="card__featured mono">{{ t(ui.featuredBadge) }}</span>
       </div>
       <a
         :href="`${project.code}/stargazers`"
@@ -36,22 +39,22 @@ const currentStars = computed(() => {
     </div>
 
     <h3 class="card__title">{{ project.title }}</h3>
-    <p class="card__meta mono">{{ project.date }} · {{ project.category }}</p>
+    <p class="card__meta mono">{{ t(project.date) }} · {{ t(project.category) }}</p>
     <p v-if="project.role" class="card__role mono">
-      <span class="card__role-label">Rol:</span> {{ project.role }}
+      <span class="card__role-label">{{ t(ui.roleLabel) }}</span> {{ t(project.role) }}
     </p>
-    <p class="card__desc">{{ project.desc }}</p>
+    <p class="card__desc">{{ t(project.desc) }}</p>
 
     <ul class="card__tags">
-      <li v-for="t in project.tags" :key="t" class="mono">{{ t }}</li>
+      <li v-for="tag in project.tags" :key="tag" class="mono">{{ tag }}</li>
     </ul>
 
     <div class="card__links">
       <a :href="project.code" target="_blank" rel="noopener noreferrer" class="card__link">
-        Ver código <SvgIcon name="ic-arrow-right" :size="14" />
+        {{ t(ui.viewCode) }} <SvgIcon name="ic-arrow-right" :size="14" />
       </a>
       <a v-if="project.demo" :href="project.demo" target="_blank" rel="noopener noreferrer" class="card__link card__link--demo">
-        Demo <SvgIcon name="ic-external" :size="14" />
+        {{ t(ui.demo) }} <SvgIcon name="ic-external" :size="14" />
       </a>
     </div>
   </article>

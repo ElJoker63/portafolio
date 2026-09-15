@@ -1,7 +1,10 @@
 <script setup>
 import { ref } from 'vue'
+import { ui } from '../data/portfolio.js'
+import { useI18n } from '../lib/i18n.js'
 import SvgIcon from './SvgIcon.vue'
 
+const { t } = useI18n()
 const year = new Date().getFullYear()
 
 function toTop() {
@@ -13,9 +16,9 @@ function toTop() {
   <footer class="footer">
     <div class="container footer__inner">
       <p class="footer__copy">
-        © {{ year }} Víctor Morejón (ElJoker63) — Hecho con Vue 3, Vite y café.
+        {{ t(ui.footerCopy).replace('{year}', year) }}
       </p>
-      <button class="footer__top" aria-label="Volver arriba" @click="toTop">
+      <button class="footer__top" :aria-label="t(ui.backToTop)" :title="t(ui.backToTop)" @click="toTop">
         <SvgIcon name="ic-chevron-up" :size="18" />
       </button>
     </div>

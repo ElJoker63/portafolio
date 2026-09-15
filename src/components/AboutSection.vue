@@ -1,29 +1,14 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { gsap, reducedMotion } from '../lib/motion.js'
-import { personalInterests } from '../data/portfolio.js'
+import { personalInterests, ui } from '../data/portfolio.js'
+import { useI18n } from '../lib/i18n.js'
 import SvgIcon from './SvgIcon.vue'
+
+const { t, isEs } = useI18n()
 
 const root = ref(null)
 let ctx = null
-
-const pillars = [
-  {
-    icon: 'ic-terminal',
-    title: 'Backend & APIs',
-    text: 'APIs REST con FastAPI, Flask y Django. Bots y servicios en Python y Node.js.'
-  },
-  {
-    icon: 'ic-server',
-    title: 'Infraestructura',
-    text: 'Docker, despliegue continuo y entornos self-hosted siempre disponibles.'
-  },
-  {
-    icon: 'ic-bot',
-    title: 'Automatización',
-    text: 'Scripts, agentes de IA y herramientas que eliminan trabajo repetitivo.'
-  }
-]
 
 onMounted(() => {
   if (reducedMotion) return
@@ -45,9 +30,9 @@ onBeforeUnmount(() => ctx?.revert())
   <section id="sobre-mi" ref="root" class="section">
     <div class="container">
       <div class="section__head reveal">
-        <p class="section__kicker mono">// 01 · perfil</p>
-        <h2 class="section__title">Sobre mí</h2>
-        <p class="section__lead">Backend, infraestructura y automatización · De Cuba, actualmente en EE. UU.</p>
+        <p class="section__kicker mono">{{ t(ui.aboutKicker) }}</p>
+        <h2 class="section__title">{{ t(ui.aboutTitle) }}</h2>
+        <p class="section__lead">{{ t(ui.aboutLead) }}</p>
       </div>
 
       <div class="about">
@@ -64,9 +49,9 @@ onBeforeUnmount(() => ctx?.revert())
           </div>
           <h3 class="about__name">Víctor Morejón</h3>
           <p class="about__handle mono">@ElJoker63</p>
-          <p class="about__quote">«Focusing on Software Development, Infrastructure &amp; Automation»</p>
+          <p class="about__quote">{{ t(ui.aboutQuote) }}</p>
           <div class="about__badges">
-            <span class="badge"><SvgIcon name="ic-pin" :size="13" /> EE. UU.</span>
+            <span class="badge"><SvgIcon name="ic-pin" :size="13" /> {{ isEs ? 'EE. UU.' : 'USA' }}</span>
             <span class="badge"><SvgIcon name="ic-globe" :size="13" /> Cuba</span>
             <span class="badge"><SvgIcon name="ic-users" :size="13" /> AEware Developers</span>
             <span class="badge"><SvgIcon name="ic-shield" :size="13" /> Open Source</span>
@@ -74,42 +59,28 @@ onBeforeUnmount(() => ctx?.revert())
         </article>
 
         <div class="about__body">
-          <p>
-            ¡Hola! Soy <strong>Víctor Morejón</strong> (en GitHub y la comunidad dev conocido como <strong>ElJoker63</strong>).
-            Soy desarrollador de software de origen cubano, actualmente radicado en <strong>Estados Unidos</strong>, especializado en <strong>backend, infraestructura y automatización</strong>.
-          </p>
-          <p>
-            Haber comenzado y construido mis primeras soluciones en Cuba, bajo entornos con recursos y conectividad limitados, me forjó una filosofía técnica clara:
-            <strong>la optimización, la eficiencia y la resiliencia no son negociables</strong>. Me muevo con fluidez entre bots
-            de alta concurrencia, APIs robustas con FastAPI y entornos auto-hospedados con Docker; lo que me apasiona es que cada
-            solución funcione sola, sin fricción y resolviendo una necesidad real.
-          </p>
-          <p>
-            Mi stack principal se apoya en <strong>Python, Docker, Node.js y bases de datos modernas</strong> (PostgreSQL, Redis, Qdrant),
-            aunque también he desarrollado aplicaciones nativas Android en Kotlin y sistemas de integración para agentes de inteligencia artificial.
-          </p>
-          <p>
-            Formo parte de <strong>AEware Developers</strong>, donde impulsamos herramientas open-source pensadas para el uso diario.
-            Creo en el software transparente, directo y bien construido.
-          </p>
+          <p v-html="t(ui.aboutBioP1)"></p>
+          <p v-html="t(ui.aboutBioP2)"></p>
+          <p v-html="t(ui.aboutBioP3)"></p>
+          <p v-html="t(ui.aboutBioP4)"></p>
 
           <div class="about__pillars">
-            <article v-for="p in pillars" :key="p.title" class="pillar spot-card">
+            <article v-for="p in ui.pillars" :key="t(p.title)" class="pillar spot-card">
               <span class="icon-badge"><SvgIcon :name="p.icon" :size="20" /></span>
-              <h4>{{ p.title }}</h4>
-              <p>{{ p.text }}</p>
+              <h4>{{ t(p.title) }}</h4>
+              <p>{{ t(p.text) }}</p>
             </article>
           </div>
 
           <!-- Aficiones e intereses que muestran el perfil humano y activo -->
           <div class="about__interests">
-            <h4 class="about__interests-title mono">// curiosidad &amp; aficiones</h4>
+            <h4 class="about__interests-title mono">{{ t(ui.interestsTitle) }}</h4>
             <div class="interests-grid">
-              <div v-for="item in personalInterests" :key="item.title" class="interest-item spot-card">
+              <div v-for="item in personalInterests" :key="t(item.title)" class="interest-item spot-card">
                 <span class="icon-badge icon-badge--sm"><SvgIcon :name="item.icon" :size="16" /></span>
                 <div>
-                  <h5 class="interest-item__title">{{ item.title }}</h5>
-                  <p class="interest-item__desc">{{ item.desc }}</p>
+                  <h5 class="interest-item__title">{{ t(item.title) }}</h5>
+                  <p class="interest-item__desc">{{ t(item.desc) }}</p>
                 </div>
               </div>
             </div>

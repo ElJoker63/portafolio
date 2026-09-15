@@ -3,6 +3,9 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { terminalLines } from '../data/portfolio.js'
 import { reducedMotion } from '../lib/motion.js'
+import { useI18n } from '../lib/i18n.js'
+
+const { currentLang } = useI18n()
 
 const visibleLines = ref([]) // { type, text, partial? }
 const typing = ref('')
@@ -18,7 +21,8 @@ function wait(ms) {
 }
 
 async function run() {
-  for (const line of terminalLines) {
+  const lines = terminalLines[currentLang.value] || terminalLines.es
+  for (const line of lines) {
     if (line.type === 'cmd') {
       typing.value = ''
       for (const ch of line.text) {
@@ -37,8 +41,9 @@ async function run() {
 }
 
 onMounted(() => {
+  const lines = terminalLines[currentLang.value] || terminalLines.es
   if (reducedMotion) {
-    visibleLines.value = [...terminalLines]
+    visibleLines.value = [...lines]
     done.value = true
   } else {
     run()

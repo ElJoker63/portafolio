@@ -1,8 +1,11 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { gsap, reducedMotion } from '../lib/motion.js'
-import { AUTHOR_EMAIL, contacts } from '../data/portfolio.js'
+import { AUTHOR_EMAIL, contacts, ui } from '../data/portfolio.js'
+import { useI18n } from '../lib/i18n.js'
 import SvgIcon from './SvgIcon.vue'
+
+const { t, isEs } = useI18n()
 
 const root = ref(null)
 const copied = ref(false)
@@ -52,11 +55,12 @@ onBeforeUnmount(() => {
   <section id="contacto" ref="root" class="section">
     <div class="container">
       <div class="section__head reveal">
-        <p class="section__kicker mono">// 04 · contacto</p>
-        <h2 class="section__title">¿Construimos algo <span class="grad-text">juntos</span>?</h2>
+        <p class="section__kicker mono">{{ t(ui.contactKicker) }}</p>
+        <h2 class="section__title">
+          {{ isEs ? '¿Construimos algo ' : "Let's build something " }}<span class="grad-text">{{ isEs ? 'juntos' : 'together' }}</span>?
+        </h2>
         <p class="section__lead">
-          ¿Tienes una idea en mente, buscas colaborar en proyectos open-source o quieres charlar de código?
-          Escríbeme por email o por cualquiera de estos canales: suelo responder con rapidez.
+          {{ t(ui.contactLead) }}
         </p>
       </div>
 
@@ -65,7 +69,7 @@ onBeforeUnmount(() => {
         <div class="contact-email__info">
           <span class="icon-badge icon-badge--lg"><SvgIcon name="ic-mail" :size="22" /></span>
           <div>
-            <p class="contact-email__label">Correo electrónico</p>
+            <p class="contact-email__label">{{ t(ui.emailDirectLabel) }}</p>
             <p class="contact-email__val mono">{{ AUTHOR_EMAIL }}</p>
           </div>
         </div>
@@ -75,13 +79,13 @@ onBeforeUnmount(() => {
             class="btn btn--primary contact-email__btn"
             :class="{ 'btn--copied': copied }"
             @click="copyEmail"
-            :title="`Copiar ${AUTHOR_EMAIL} al portapapeles`"
+            :title="isEs ? `Copiar ${AUTHOR_EMAIL} al portapapeles` : `Copy ${AUTHOR_EMAIL} to clipboard`"
           >
             <SvgIcon :name="copied ? 'ic-check' : 'ic-copy'" :size="16" />
-            {{ copied ? '¡Email copiado!' : 'Copiar email' }}
+            {{ copied ? t(ui.copiedEmailBtn) : t(ui.copyEmailBtn) }}
           </button>
           <a :href="`mailto:${AUTHOR_EMAIL}`" class="btn btn--ghost contact-email__btn">
-            Enviar mensaje
+            {{ t(ui.sendEmailBtn) }}
             <SvgIcon name="ic-external" :size="14" />
           </a>
         </div>
@@ -99,7 +103,7 @@ onBeforeUnmount(() => {
           <span class="icon-badge icon-badge--lg"><SvgIcon :name="c.icon" :size="22" /></span>
           <span class="contact-card__name">{{ c.name }}</span>
           <span class="contact-card__handle mono">{{ c.handle }}</span>
-          <span v-if="c.note" class="contact-card__note">{{ c.note }}</span>
+          <span v-if="c.note" class="contact-card__note">{{ t(c.note) }}</span>
           <SvgIcon name="ic-external" :size="15" class="contact-card__arrow" />
         </a>
       </div>

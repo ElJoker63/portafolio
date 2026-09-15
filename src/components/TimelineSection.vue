@@ -1,11 +1,13 @@
 <script setup>
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { gsap, reducedMotion, ScrollTrigger } from '../lib/motion.js'
-import { timeline } from '../data/portfolio.js'
+import { timeline, ui } from '../data/portfolio.js'
+import { useI18n } from '../lib/i18n.js'
 import { useGitHub } from '../lib/github.js'
 import SvgIcon from './SvgIcon.vue'
 import ProjectCard from './ProjectCard.vue'
 
+const { t } = useI18n()
 const root = ref(null)
 const lineFill = ref(null)
 const filterMode = ref('all') // 'all' | 'featured'
@@ -70,15 +72,14 @@ onBeforeUnmount(() => ctx?.revert())
   <section id="proyectos" ref="root" class="section">
     <div class="container">
       <div class="section__head reveal">
-        <p class="section__kicker mono">// 03 · trayectoria</p>
-        <h2 class="section__title">Mi hoja de ruta como developer.</h2>
+        <p class="section__kicker mono">{{ t(ui.projectsKicker) }}</p>
+        <h2 class="section__title">{{ t(ui.projectsTitle) }}</h2>
         <p class="section__lead">
-          Un recorrido cronológico por los proyectos que marcaron mi evolución: desde utilidades esenciales
-          hasta gateways de IA, aplicaciones Android nativas y clientes de mensajería.
+          {{ t(ui.projectsLead) }}
         </p>
       </div>
 
-      <!-- Filtro de vista: destacados vs trayectoria completa (criterio de usabilidad de Brais Moure) -->
+      <!-- Filtro de vista: destacados vs trayectoria completa -->
       <div class="timeline__filters-wrap reveal">
         <div class="timeline__filters">
           <button
@@ -87,7 +88,7 @@ onBeforeUnmount(() => ctx?.revert())
             :class="{ active: filterMode === 'all' }"
             @click="setFilter('all')"
           >
-            Todos los hitos ({{ timeline.length }})
+            {{ t(ui.allMilestones) }} ({{ timeline.length }})
           </button>
           <button
             type="button"
@@ -95,7 +96,7 @@ onBeforeUnmount(() => ctx?.revert())
             :class="{ active: filterMode === 'featured' }"
             @click="setFilter('featured')"
           >
-            ★ Proyectos destacados ({{ timeline.filter(p => p.featured).length }})
+            {{ t(ui.featuredMilestones) }} ({{ timeline.filter(p => p.featured).length }})
           </button>
         </div>
       </div>
@@ -131,7 +132,7 @@ onBeforeUnmount(() => ctx?.revert())
           rel="noopener noreferrer"
         >
           <SvgIcon name="ic-github" :size="17" />
-          Ver los {{ totalRepos }} repositorios en GitHub
+          {{ t(ui.viewAllGithub).replace('{count}', totalRepos) }}
           <SvgIcon name="ic-external" :size="14" />
         </a>
       </div>

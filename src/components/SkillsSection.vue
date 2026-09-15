@@ -1,9 +1,11 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { gsap, reducedMotion } from '../lib/motion.js'
-import { marqueeSkills, skillGroups } from '../data/portfolio.js'
+import { marqueeSkills, skillGroups, ui } from '../data/portfolio.js'
+import { useI18n } from '../lib/i18n.js'
 import SvgIcon from './SvgIcon.vue'
 
+const { t } = useI18n()
 const root = ref(null)
 let ctx = null
 
@@ -26,9 +28,9 @@ onBeforeUnmount(() => ctx?.revert())
   <section id="skills" ref="root" class="section">
     <div class="container">
       <div class="section__head reveal">
-        <p class="section__kicker mono">// 02 · arsenal</p>
-        <h2 class="section__title">Skills &amp; herramientas</h2>
-        <p class="section__lead">El stack con el que construyo, despliego y mantengo.</p>
+        <p class="section__kicker mono">{{ t(ui.skillsKicker) }}</p>
+        <h2 class="section__title">{{ t(ui.skillsTitle) }}</h2>
+        <p class="section__lead">{{ t(ui.skillsLead) }}</p>
       </div>
     </div>
 
@@ -44,9 +46,9 @@ onBeforeUnmount(() => ctx?.revert())
 
     <div class="container">
       <div class="skills__grid">
-        <article v-for="g in skillGroups" :key="g.title" class="skill-group spot-card">
+        <article v-for="g in skillGroups" :key="t(g.title)" class="skill-group spot-card">
           <span class="icon-badge icon-badge--lg"><SvgIcon :name="g.icon" :size="24" /></span>
-          <h3>{{ g.title }}</h3>
+          <h3>{{ t(g.title) }}</h3>
           <ul>
             <li v-for="item in g.items" :key="item" class="mono">{{ item }}</li>
           </ul>

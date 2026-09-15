@@ -1,10 +1,13 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { gsap, reducedMotion, ScrollTrigger } from '../lib/motion.js'
-import { CV_URL, stats as defaultStats, typingPhrases } from '../data/portfolio.js'
+import { CV_URL, stats as defaultStats, typingPhrases, ui } from '../data/portfolio.js'
+import { useI18n } from '../lib/i18n.js'
 import { useGitHub } from '../lib/github.js'
 import SvgIcon from './SvgIcon.vue'
 import TerminalCard from './TerminalCard.vue'
+
+const { t, currentLang } = useI18n()
 
 const root = ref(null)
 const typed = ref('')
@@ -13,12 +16,12 @@ const statRefs = ref([])
 
 const { userProfile, isSynced } = useGitHub()
 
-// Estadísticas con reactividad en vivo desde GitHub
+// Estadísticas con reactividad en vivo desde GitHub y etiquetas bilingües
 const stats = computed(() => [
-  { value: userProfile.publicRepos || defaultStats[0].value, label: 'Repositorios' },
-  { value: defaultStats[1].value, label: 'Estrellas dadas' },
-  { value: userProfile.followers ?? defaultStats[2].value, label: 'Seguidores' },
-  { value: userProfile.following ?? defaultStats[3].value, label: 'Siguiendo' }
+  { value: userProfile.publicRepos || defaultStats[0].value, label: defaultStats[0].label },
+  { value: defaultStats[1].value, label: defaultStats[1].label },
+  { value: userProfile.followers ?? defaultStats[2].value, label: defaultStats[2].label },
+  { value: userProfile.following ?? defaultStats[3].value, label: defaultStats[3].label }
 ])
 
 let timers = []
@@ -29,11 +32,12 @@ function wait(ms) {
   return new Promise((r) => { const id = setTimeout(r, ms); timers.push(id) })
 }
 
-// Efecto de escritura del subtítulo (rotación de frases)
+// Efecto de escritura del subtítulo (rotación de frases según idioma)
 async function typeLoop() {
   let i = 0
   while (true) {
-    const phrase = typingPhrases[i % typingPhrases.length]
+    const list = typingPhrases[currentLang.value] || typingPhrases.es
+    const phrase = list[i % list.length]
     for (let c = 0; c <= phrase.length; c++) {
       typed.value = phrase.slice(0, c)
       await wait(52 + Math.random() * 34)
@@ -113,27 +117,23 @@ onBeforeUnmount(() => {
       <div class="hero__copy">
         <p class="hero__eyebrow mono">
           <span class="hero__pulse" aria-hidden="true"></span>
-          Disponible para nuevos proyectos &amp; colaboraciones
+          {{ t(ui.available) }}
         </p>
         <h1 class="hero__title">
-          Hola, soy <span class="grad-text">Víctor Morejón</span>.
+          {{ t(ui.greeting) }} <span class="grad-text">Víctor Morejón</span>.
         </h1>
         <p class="hero__typing">
-          Construyo <span class="hero__typed mono">{{ typed }}</span><span class="hero__caret" :class="{ on: caretOn }" aria-hidden="true"></span>
+          {{ t(ui.building) }} <span class="hero__typed mono">{{ typed }}</span><span class="hero__caret" :class="{ on: caretOn }" aria-hidden="true"></span>
         </p>
-        <p class="hero__desc">
-          Desarrollador enfocado en backend, infraestructura y automatización. En internet me conocen
-          como <strong>ElJoker63</strong> y formo parte de <strong>AEware Developers</strong>. Me apasiona
-          crear herramientas útiles que resuelven problemas concretos — con código limpio, alta resiliencia y cero rodeos.
-        </p>
+        <p class="hero__desc" v-html="t(ui.heroDesc)"></p>
         <div class="hero__actions">
           <a href="#proyectos" class="btn btn--primary">
-            Ver proyectos
+            {{ t(ui.viewProjects) }}
             <SvgIcon name="ic-arrow-right" :size="17" />
           </a>
-          <a :href="CV_URL" target="_blank" rel="noopener noreferrer" class="btn btn--ghost" title="Abrir Currículum Vitae en PDF">
+          <a :href="CV_URL" target="_blank" rel="noopener noreferrer" class="btn btn--ghost" :title="t(ui.viewCv)">
             <SvgIcon name="ic-file-text" :size="16" />
-            Ver CV
+            {{ t(ui.viewCv) }}
           </a>
           <a href="https://github.com/ElJoker63" target="_blank" rel="noopener noreferrer" class="btn btn--ghost">
             <SvgIcon name="ic-github" :size="17" />
@@ -141,8 +141,8 @@ onBeforeUnmount(() => {
           </a>
         </div>
         <dl class="hero__stats">
-          <div v-for="(s, i) in stats" :key="s.label" class="stat">
-            <dt class="stat__label">{{ s.label }}</dt>
+          <div v-for="(s, i) in stats" :key="i" class="stat">
+            <dt class="stat__label">{{ t(s.label) }}</dt>
             <dd class="stat__value"><span :ref="(el) => (statRefs[i] = el)">{{ reducedMotion ? s.value : 0 }}</span></dd>
           </div>
         </dl>

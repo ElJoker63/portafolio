@@ -1,7 +1,10 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-import { CV_URL, navLinks } from '../data/portfolio.js'
+import { CV_URL, navLinks, ui } from '../data/portfolio.js'
+import { useI18n } from '../lib/i18n.js'
 import SvgIcon from './SvgIcon.vue'
+
+const { isEs, isEn, toggleLang, t } = useI18n()
 
 const scrolled = ref(false)
 const menuOpen = ref(false)
@@ -59,20 +62,47 @@ onBeforeUnmount(() => removeListeners.forEach((fn) => fn()))
           class="nav__link"
           :class="{ active: activeId === l.id }"
           @click="closeMenu"
-        >{{ l.label }}</a>
-        <a :href="CV_URL" target="_blank" rel="noopener noreferrer" class="btn btn--ghost nav__cta-mobile" @click="closeMenu">
-          <SvgIcon name="ic-file-text" :size="16" />
-          Ver CV (PDF)
-        </a>
-        <a href="#contacto" class="btn btn--primary nav__cta-mobile" @click="closeMenu">Hablemos</a>
+        >{{ t(l.label) }}</a>
+
+        <div class="nav__mobile-row">
+          <button
+            type="button"
+            class="nav__lang-toggle mono"
+            @click="toggleLang"
+            :title="isEs ? 'Switch to English' : 'Cambiar a Español'"
+          >
+            <span :class="{ active: isEs }">ES</span>
+            <span class="nav__lang-sep">/</span>
+            <span :class="{ active: isEn }">EN</span>
+          </button>
+          <a :href="CV_URL" target="_blank" rel="noopener noreferrer" class="btn btn--ghost nav__cta-mobile-cv" @click="closeMenu">
+            <SvgIcon name="ic-file-text" :size="15" />
+            {{ t(ui.viewCv) }}
+          </a>
+        </div>
+
+        <a href="#contacto" class="btn btn--primary nav__cta-mobile" @click="closeMenu">{{ t(ui.letsTalk) }}</a>
       </nav>
 
       <div class="nav__actions">
-        <a :href="CV_URL" target="_blank" rel="noopener noreferrer" class="btn btn--ghost nav__cv" title="Abrir Currículum en PDF">
+        <!-- Conmutador de idioma ES / EN -->
+        <button
+          type="button"
+          class="nav__lang-toggle mono"
+          @click="toggleLang"
+          :title="isEs ? 'Switch to English' : 'Cambiar a Español'"
+          :aria-label="isEs ? 'Switch to English' : 'Cambiar a Español'"
+        >
+          <span :class="{ active: isEs }">ES</span>
+          <span class="nav__lang-sep">/</span>
+          <span :class="{ active: isEn }">EN</span>
+        </button>
+
+        <a :href="CV_URL" target="_blank" rel="noopener noreferrer" class="btn btn--ghost nav__cv" :title="t(ui.viewCv)">
           <SvgIcon name="ic-file-text" :size="15" />
           CV
         </a>
-        <a href="#contacto" class="btn btn--ghost nav__cta">Hablemos</a>
+        <a href="#contacto" class="btn btn--ghost nav__cta">{{ t(ui.letsTalk) }}</a>
       </div>
 
       <button
@@ -143,10 +173,40 @@ onBeforeUnmount(() => removeListeners.forEach((fn) => fn()))
 }
 
 .nav__actions { display: flex; align-items: center; gap: 10px }
+.nav__lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+}
+.nav__lang-toggle:hover {
+  border-color: rgba(167, 139, 250, 0.4);
+  background: var(--surface-3);
+}
+.nav__lang-toggle span.active {
+  color: var(--cyan);
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.4);
+}
+.nav__lang-sep {
+  color: var(--muted);
+  opacity: 0.35;
+  font-size: 0.7rem;
+}
 .nav__cv { padding: 9px 16px; font-size: 0.85rem; color: var(--cyan); border-color: rgba(34, 211, 238, 0.25) }
 .nav__cv:hover { border-color: var(--cyan); background: rgba(34, 211, 238, 0.08) }
 .nav__cta { padding: 9px 20px; font-size: 0.88rem }
 .nav__cta-mobile { display: none }
+.nav__mobile-row { display: none }
 
 .nav__burger {
   display: none;
@@ -176,7 +236,22 @@ onBeforeUnmount(() => removeListeners.forEach((fn) => fn()))
   .nav__links.open { opacity: 1; transform: none; pointer-events: auto }
   .nav__link { padding: 12px 16px }
   .nav__actions { display: none }
-  .nav__cta-mobile { display: inline-flex; justify-content: center; margin-top: 8px }
+  .nav__mobile-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 8px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .nav__cta-mobile-cv {
+    flex: 1;
+    justify-content: center;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+  }
+  .nav__cta-mobile { display: inline-flex; justify-content: center; margin-top: 6px }
   .nav__burger { display: grid }
 }
 </style>

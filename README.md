@@ -9,6 +9,7 @@ Sitio en vivo: **[eljoker63.github.io/portafolio](https://eljoker63.github.io/po
 ## Características
 
 - **Identidad & Narrativa Humana**: Diseñado para reflejar la experiencia real de **Víctor Morejón** en backend, infraestructura, automatización y desarrollo open-source en **AEware Developers**.
+- **Soporte Bilingüe Completo (Español / Inglés - ES / EN)** (`src/lib/i18n.js`): Sistema reactivo ligero sin dependencias pesadas que detecta automáticamente el idioma preferido del navegador (`navigator.language`), sincroniza la etiqueta `<html lang="...">` y el título de la pestaña, y permite alternar instantáneamente entre ES y EN con un clic desde el navbar (desktop y móvil).
 - **Sincronización en Vivo con GitHub** (`src/lib/github.js`): Consulta en tiempo real las estrellas de cada repositorio y estadísticas públicas con paginación inteligente y fallback local instantáneo (sin pantallas en blanco si no hay internet o se alcanzan límites de cuota).
 - **Proyectos Destacados y Cronología Completa**: Filtro interactivo para explorar los proyectos insignia o consultar el recorrido cronológico completo verificado por la API de GitHub.
 - **Email con Copia Rápida**: Tarjeta de contacto con correo electrónico visible en texto plano (`eljoker630@gmail.com`) y botón de un clic para copiar al portapapeles con confirmación visual.
@@ -45,8 +46,9 @@ portafolio/
 │   ├── main.js                   # Inicialización de Vue
 │   ├── App.vue                   # Layout principal y halo cursor
 │   ├── styles/base.css           # Tokens de diseño (:root), reset y utilidades
-│   ├── data/portfolio.js         # Datos fuente: hitos, skills, contactos y fallbacks
+│   ├── data/portfolio.js         # Datos fuente: hitos, skills, contactos y fallbacks bilingües
 │   ├── lib/
+│   │   ├── i18n.js               # Sistema reactivo de internacionalización (ES / EN)
 │   │   ├── github.js             # Servicio reactivo de sincronización con API de GitHub
 │   │   └── motion.js             # GSAP, ScrollTrigger y fallback prefers-reduced-motion
 │   └── components/
