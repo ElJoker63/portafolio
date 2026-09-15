@@ -1,0 +1,216 @@
+/* ============================================================
+   ElJoker63 — Portafolio v2 (Vue 3 + Vite)
+   Sistema de diseño: dark tecnológico + glassmorphism
+   ============================================================ */
+
+:root {
+  /* Paleta */
+  --bg: #05050a;
+  --bg-2: #0a0a13;
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-2: rgba(255, 255, 255, 0.07);
+  --border: rgba(255, 255, 255, 0.09);
+  --border-glow: rgba(139, 92, 246, 0.4);
+  --text: #f4f4f9;
+  --dim: #a6a6ba;
+  --dimmer: #66667a;
+
+  --violet: #8b5cf6;
+  --fuchsia: #ec4899;
+  --cyan: #22d3ee;
+  --green: #34d399;
+
+  --grad: linear-gradient(120deg, var(--cyan), var(--violet) 55%, var(--fuchsia));
+  --grad-soft: linear-gradient(135deg, rgba(139, 92, 246, 0.16), rgba(34, 211, 238, 0.09));
+
+  /* Tipografía */
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+
+  /* Escala */
+  --r-sm: 10px;
+  --r: 16px;
+  --r-lg: 24px;
+  --container: 1180px;
+  --sec-pad: clamp(48px, 6vw, 76px);
+  --ease: cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+
+/* ---- Reset ---- */
+*,
+*::before,
+*::after { box-sizing: border-box; margin: 0; padding: 0 }
+
+html { scroll-behavior: smooth; scroll-padding-top: 84px }
+html.reduced { scroll-behavior: auto }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden; /* evita scroll horizontal por blobs/partículas */
+}
+
+img { max-width: 100%; display: block }
+a { color: inherit; text-decoration: none }
+ul { list-style: none }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer }
+::selection { background: rgba(139, 92, 246, 0.45); color: #fff }
+
+::-webkit-scrollbar { width: 10px }
+::-webkit-scrollbar-track { background: var(--bg) }
+::-webkit-scrollbar-thumb { background: #23233a; border-radius: 8px; border: 2px solid var(--bg) }
+::-webkit-scrollbar-thumb:hover { background: #31314d }
+
+/* ---- Utilidades ---- */
+.container { max-width: var(--container); margin-inline: auto; padding-inline: 24px }
+
+.section { padding-block: var(--sec-pad); position: relative }
+
+/* Encabezado de sección con numeración mono: «// 01. sobre-mí» */
+.section__head { max-width: 640px; margin-bottom: clamp(28px, 4vw, 44px) }
+.section__kicker {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--cyan);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.section__kicker::before {
+  content: '';
+  width: 26px;
+  height: 1px;
+  background: var(--grad);
+}
+.section__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+.section__lead { color: var(--dim); margin-top: 12px; font-size: 1.02rem }
+
+.grad-text {
+  background: var(--grad);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: grad-pan 7s var(--ease) infinite;
+}
+@keyframes grad-pan {
+  0%, 100% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+}
+
+.mono { font-family: var(--font-mono) }
+
+/* ---- Botones ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 13px 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  font-family: var(--font-body);
+  letter-spacing: 0.01em;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease),
+    border-color 0.35s var(--ease), background 0.35s var(--ease);
+  will-change: transform;
+}
+.btn svg { transition: transform 0.35s var(--ease) }
+
+.btn--primary {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background: linear-gradient(120deg, #6d28d9, #8b5cf6 40%, var(--fuchsia));
+  background-size: 180% 100%;
+  box-shadow: 0 10px 32px -10px rgba(139, 92, 246, 0.55);
+}
+.btn--primary::after { /* barrido de brillo */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.28) 50%, transparent 65%);
+  transform: translateX(-110%);
+  transition: transform 0.65s var(--ease);
+}
+.btn--primary:hover { transform: translateY(-2px); background-position: 90% 0; box-shadow: 0 16px 44px -10px rgba(139, 92, 246, 0.7) }
+.btn--primary:hover::after { transform: translateX(110%) }
+.btn--primary:hover svg { transform: translateX(4px) }
+
+.btn--ghost {
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+.btn--ghost:hover { transform: translateY(-2px); border-color: var(--border-glow); background: var(--surface-2) }
+
+/* ---- Badge de icono ---- */
+.icon-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  display: inline-grid;
+  place-items: center;
+  color: #c4b5fd;
+  background: var(--grad-soft);
+  border: 1px solid rgba(139, 92, 246, 0.28);
+  flex-shrink: 0;
+}
+.icon-badge--lg { width: 52px; height: 52px; border-radius: 15px }
+
+/* ---- Tarjetas con spotlight que sigue al cursor ---- */
+.spot-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: border-color 0.4s var(--ease), transform 0.4s var(--ease), background 0.4s var(--ease);
+}
+.spot-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    320px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(139, 92, 246, 0.14),
+    rgba(34, 211, 238, 0.06) 45%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+  pointer-events: none;
+}
+.spot-card:hover { border-color: rgba(139, 92, 246, 0.35); transform: translateY(-4px) }
+.spot-card:hover::before { opacity: 1 }
+.spot-card > * { position: relative }
+
+/* ---- Reveal (fallback sin GSAP / reduced motion) ---- */
+html:not(.gsap-on) .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease) }
+html:not(.gsap-on) .reveal.in-view { opacity: 1; transform: none }
+
+html.reduced .reveal { opacity: 1 !important; transform: none !important; transition: none }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
