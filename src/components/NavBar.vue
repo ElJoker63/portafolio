@@ -1,6 +1,6 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-import { navLinks } from '../data/portfolio.js'
+import { CV_URL, navLinks } from '../data/portfolio.js'
 import SvgIcon from './SvgIcon.vue'
 
 const scrolled = ref(false)
@@ -47,8 +47,8 @@ onBeforeUnmount(() => removeListeners.forEach((fn) => fn()))
 
   <header class="nav" :class="{ scrolled, open: menuOpen }">
     <div class="nav__inner container">
-      <a href="#inicio" class="nav__brand" @click="closeMenu">
-        <span class="nav__bracket">&lt;</span>ElJoker63<span class="nav__bracket">/&gt;</span>
+      <a href="#inicio" class="nav__brand" @click="closeMenu" title="Víctor Morejón (@ElJoker63)">
+        <span class="nav__bracket">&lt;</span>Víctor Morejón<span class="nav__bracket">/&gt;</span>
       </a>
 
       <nav class="nav__links" :class="{ open: menuOpen }" aria-label="Navegación principal">
@@ -60,10 +60,20 @@ onBeforeUnmount(() => removeListeners.forEach((fn) => fn()))
           :class="{ active: activeId === l.id }"
           @click="closeMenu"
         >{{ l.label }}</a>
+        <a :href="CV_URL" target="_blank" rel="noopener noreferrer" class="btn btn--ghost nav__cta-mobile" @click="closeMenu">
+          <SvgIcon name="ic-file-text" :size="16" />
+          Ver CV (PDF)
+        </a>
         <a href="#contacto" class="btn btn--primary nav__cta-mobile" @click="closeMenu">Hablemos</a>
       </nav>
 
-      <a href="#contacto" class="btn btn--ghost nav__cta">Hablemos</a>
+      <div class="nav__actions">
+        <a :href="CV_URL" target="_blank" rel="noopener noreferrer" class="btn btn--ghost nav__cv" title="Abrir Currículum en PDF">
+          <SvgIcon name="ic-file-text" :size="15" />
+          CV
+        </a>
+        <a href="#contacto" class="btn btn--ghost nav__cta">Hablemos</a>
+      </div>
 
       <button
         class="nav__burger"
@@ -132,6 +142,9 @@ onBeforeUnmount(() => removeListeners.forEach((fn) => fn()))
   box-shadow: inset 0 0 0 1px var(--border);
 }
 
+.nav__actions { display: flex; align-items: center; gap: 10px }
+.nav__cv { padding: 9px 16px; font-size: 0.85rem; color: var(--cyan); border-color: rgba(34, 211, 238, 0.25) }
+.nav__cv:hover { border-color: var(--cyan); background: rgba(34, 211, 238, 0.08) }
 .nav__cta { padding: 9px 20px; font-size: 0.88rem }
 .nav__cta-mobile { display: none }
 
@@ -162,7 +175,7 @@ onBeforeUnmount(() => removeListeners.forEach((fn) => fn()))
   }
   .nav__links.open { opacity: 1; transform: none; pointer-events: auto }
   .nav__link { padding: 12px 16px }
-  .nav__cta { display: none }
+  .nav__actions { display: none }
   .nav__cta-mobile { display: inline-flex; justify-content: center; margin-top: 8px }
   .nav__burger { display: grid }
 }

@@ -1,36 +1,40 @@
-// Datos del portafolio. El timeline está ordenado cronológicamente (oldest → newest)
-// según created_at de la API de GitHub. Si se agregan/quitan proyectos, re-consultar:
+// Datos del portafolio de Víctor Morejón (ElJoker63).
+// El timeline está ordenado cronológicamente (oldest → newest) según created_at de la API de GitHub:
 // https://api.github.com/users/ElJoker63/repos?sort=created&direction=asc&per_page=100
 
+export const AUTHOR_NAME = 'Víctor Morejón'
 export const GITHUB_USER = 'ElJoker63'
+export const AUTHOR_EMAIL = 'eljoker630@gmail.com'
+export const CV_URL = 'https://github.com/ElJoker63/ElJoker63/raw/main/CV_Victor_Morejon.pdf'
+export const ROLE_TITLE = 'Backend · Infraestructura · Automatización'
 
 export const stats = [
-  { value: 163, label: 'Repositorios' },
+  { value: 164, label: 'Repositorios' },
   { value: 177, label: 'Estrellas dadas' },
   { value: 41, label: 'Seguidores' },
   { value: 87, label: 'Siguiendo' }
 ]
 
 export const typingPhrases = [
-  'APIs y bots.',
-  'infraestructura con Docker.',
+  'APIs robustas y bots útiles.',
+  'infraestructura ágil con Docker.',
   'gateways para agentes de IA.',
-  'automatizaciones útiles.',
-  'herramientas open-source.'
+  'automatizaciones que ahorran tiempo.',
+  'herramientas open-source con impacto.'
 ]
 
 export const terminalLines = [
   { type: 'cmd', text: 'whoami' },
-  { type: 'out', text: 'backend · infraestructura · automatización' },
-  { type: 'cmd', text: 'cat stack.txt' },
-  { type: 'out', text: 'Python — FastAPI — Docker — Redis — Qdrant' },
-  { type: 'cmd', text: 'systemctl status gateway' },
-  { type: 'ok', text: 'my-gateway.service — activo · AEware Developers' }
+  { type: 'out', text: 'Víctor Morejón (@ElJoker63) — Backend & DevOps' },
+  { type: 'cmd', text: 'cat focus.txt' },
+  { type: 'out', text: 'Python · FastAPI · Docker · Redis · Qdrant · Linux' },
+  { type: 'cmd', text: 'systemctl status dev-passion' },
+  { type: 'ok', text: 'active (running) · 100% autodidacta · AEware Developers' }
 ]
 
 export const marqueeSkills = [
-  'Python', 'Docker', 'Git', 'Node.js', 'Flask', 'Django', 'Laravel', 'AWS',
-  'Firebase', 'MongoDB', 'MySQL', 'PostgreSQL', 'Android Studio', 'FastAPI', 'Redis'
+  'Python', 'Docker', 'Git', 'Node.js', 'FastAPI', 'Flask', 'Django', 'Laravel',
+  'AWS', 'Firebase', 'MongoDB', 'MySQL', 'PostgreSQL', 'Redis', 'Qdrant', 'Android Studio'
 ]
 
 export const skillGroups = [
@@ -51,9 +55,16 @@ export const skillGroups = [
   },
   {
     icon: 'ic-cpu',
-    title: 'Datos',
+    title: 'Datos & IA',
     items: ['MongoDB', 'MySQL', 'PostgreSQL', 'Redis', 'Qdrant']
   }
+]
+
+export const personalInterests = [
+  { icon: 'ic-terminal', title: 'Linux & Self-Hosting', desc: 'Servidores dedicados caseros, contenedores y entornos siempre listos.' },
+  { icon: 'ic-smartphone', title: 'Modding Android', desc: 'Custom ROMs, flasheo seguro y exprimir las capacidades del hardware.' },
+  { icon: 'ic-cpu', title: 'Agentes & IA Local', desc: 'Experimentar con LLMs locales, memoria vectorial y automatización cognitiva.' },
+  { icon: 'ic-volume', title: 'Música para Focus', desc: 'Synthwave y ritmos electrónicos para concentrarse en sesiones de código.' }
 ]
 
 export const timeline = [
@@ -63,7 +74,8 @@ export const timeline = [
     title: 'DataFacil',
     icon: 'ic-globe',
     stars: 2,
-    desc: 'Sitio web oficial de DataFacil, con versiones para Android y Windows Phone. Interfaz web con gestión de contenido dinámico vía JSON.',
+    role: 'Diseño y desarrollo web',
+    desc: 'Sitio oficial de DataFacil, con soporte para Android y Windows Phone. Diseñado para ofrecer navegación fluida con gestión de contenidos desacoplada vía JSON.',
     tags: ['HTML', 'CSS', 'JavaScript'],
     code: 'https://github.com/ElJoker63/DataFacil',
     demo: 'https://datafacil.vercel.app'
@@ -74,7 +86,8 @@ export const timeline = [
     title: 'PTB_Bot-Example',
     icon: 'ic-chat',
     stars: 1,
-    desc: 'Colección de varios bots de Telegram hechos en Python, pensados como ejemplos reutilizables para nuevos proyectos.',
+    role: 'Desarrollo backend en Python',
+    desc: 'Plantillas y ejemplos prácticos de bots en Python. Nació para ahorrar tiempo a otros desarrolladores que comienzan en la creación de asistentes interactivos.',
     tags: ['Python', 'python-telegram-bot'],
     code: 'https://github.com/ElJoker63/PTB_Bot-Example'
   },
@@ -84,7 +97,8 @@ export const timeline = [
     title: 'repo-magisk',
     icon: 'ic-box',
     stars: 3,
-    desc: 'Repositorio de módulos para MRepo (gestor de módulos Magisk), desplegado en Netlify. Permite instalar y actualizar módulos fácilmente desde una interfaz web.',
+    role: 'Despliegue y catálogo web',
+    desc: 'Repositorio y catálogo web de módulos para MRepo (Magisk) en Netlify. Facilita descubrir e instalar módulos de personalización sin complicaciones.',
     tags: ['JavaScript', 'Netlify', 'JSON'],
     code: 'https://github.com/ElJoker63/repo-magisk',
     demo: 'https://repo-magisk.netlify.app'
@@ -95,8 +109,9 @@ export const timeline = [
     title: 'pysteamcmdwrapper',
     icon: 'ic-terminal',
     stars: 0,
-    desc: 'Librería en Python para trabajar con SteamCMD, con soporte para instalarlo en Linux y descargar juegos de Windows.',
-    tags: ['Python', 'SteamCMD'],
+    role: 'Autor de librería open-source',
+    desc: 'Librería Python para interactuar con SteamCMD. Automatiza descargas de servidores y juegos de Windows directamente en entornos Linux sin interfaz gráfica.',
+    tags: ['Python', 'SteamCMD', 'Automation'],
     code: 'https://github.com/ElJoker63/pysteamcmdwrapper'
   },
   {
@@ -105,7 +120,9 @@ export const timeline = [
     title: 'cambio-actual',
     icon: 'ic-smartphone',
     stars: 1,
-    desc: 'App Android (Kotlin + Jetpack Compose) que muestra en tiempo real el cambio informal de divisas en Cuba y precios de criptomonedas, con gráficas históricas, conversor y un mercado integrado de compra/venta.',
+    featured: true,
+    role: 'Desarrollador Android (Kotlin/Compose)',
+    desc: 'App nativa (Kotlin + Jetpack Compose) que monitoriza las tasas del mercado informal de divisas y cripto en Cuba. Funciona offline y ahorra datos móviles.',
     tags: ['Kotlin', 'Jetpack Compose', 'Room', 'Retrofit'],
     code: 'https://github.com/ElJoker63/cambio-actual'
   },
@@ -115,8 +132,9 @@ export const timeline = [
     title: '1fichier-dl',
     icon: 'ic-download',
     stars: 2,
-    desc: 'Gestor de descargas para 1Fichier que ayuda a evitar las restricciones de tiempo del servicio, con una interfaz simple y ligera.',
-    tags: ['Python', 'Unlicense'],
+    role: 'Desarrollo CLI y optimización',
+    desc: 'Gestor de descargas para 1Fichier que salta temporizadores de espera y reanuda descargas, pensado para conexiones con ancho de banda inestable.',
+    tags: ['Python', 'Automation', 'CLI'],
     code: 'https://github.com/ElJoker63/1fichier-dl'
   },
   {
@@ -125,8 +143,9 @@ export const timeline = [
     title: 'MOTO-LAKE',
     icon: 'ic-refresh',
     stars: 1,
-    desc: 'Herramienta que automatiza la instalación y actualización de LineageOS en el Moto G7 Plus (Lake): descarga ADB, Fastboot, TWRP y Magisk, y flashea el dispositivo desde consola.',
-    tags: ['Python', 'MIT'],
+    role: 'Automatización y scripts de flasheo',
+    desc: 'Script automatizado para flashear LineageOS en el Moto G7 Plus: descarga ADB, Fastboot, TWRP y Magisk guiando al usuario paso a paso de forma segura.',
+    tags: ['Python', 'Android', 'Bash'],
     code: 'https://github.com/ElJoker63/MOTO-LAKE'
   },
   {
@@ -135,8 +154,9 @@ export const timeline = [
     title: 'volume-win',
     icon: 'ic-volume',
     stars: 2,
-    desc: 'Utilidad ligera en Python para controlar el volumen del sistema en Windows de forma rápida y sencilla.',
-    tags: ['Python', 'Windows'],
+    role: 'Desarrollo de utilidad nativa',
+    desc: 'Herramienta ligera en Python para controlar el volumen maestro de Windows por consola y atajos, sin servicios pesados en segundo plano.',
+    tags: ['Python', 'Windows API'],
     code: 'https://github.com/ElJoker63/volume-win'
   },
   {
@@ -145,7 +165,9 @@ export const timeline = [
     title: 'toDus-API',
     icon: 'ic-chat',
     stars: 4,
-    desc: 'Cliente en Python para ToDus, la plataforma de mensajería de Cuba. Permite crear bots interactivos, gestionar grupos y canales, enviar multimedia y publicar historias con una interfaz moderna orientada a eventos.',
+    featured: true,
+    role: 'Arquitectura de librería y eventos',
+    desc: 'Cliente moderno en Python para ToDus, la plataforma de mensajería cubana. Permite bots de soporte, gestión de canales, envíos multimedia y eventos en tiempo real.',
     tags: ['Python', 'PyPI', 'MkDocs', 'CI/CD'],
     code: 'https://github.com/ElJoker63/toDus-API'
   },
@@ -155,8 +177,10 @@ export const timeline = [
     title: 'coolify-overlord',
     icon: 'ic-bot',
     stars: 0,
-    desc: 'Skill para el agente de IA Hermes que permite gestionar Coolify (PaaS self-hosted) por lenguaje natural: desplegar, monitorear y administrar apps, servicios y servidores.',
-    tags: ['AI Agent Skill', 'REST API', 'MIT'],
+    featured: true,
+    role: 'Integración y skill de agente IA',
+    desc: 'Skill para el agente Hermes que administra servidores y despliegues en Coolify por lenguaje natural: inspecciona contenedores, logs y despliegues sin entrar al panel.',
+    tags: ['AI Agent Skill', 'REST API', 'DevOps'],
     code: 'https://github.com/ElJoker63/coolify-overlord'
   },
   {
@@ -165,7 +189,9 @@ export const timeline = [
     title: 'my-gateway',
     icon: 'ic-cpu',
     stars: 3,
-    desc: 'Gateway local inteligente entre agentes de IA y proveedores LLM. Gestiona consumo de API, aplica rate-limiting, mantiene memoria vectorial persistente y enriquece las peticiones con contexto del proyecto.',
+    featured: true,
+    role: 'Diseño de gateway e infra local',
+    desc: 'Gateway local entre agentes de IA y proveedores LLM. Incorpora rate-limiting, persistencia de memoria vectorial con Qdrant y caché en Redis para recortar consumo de API.',
     tags: ['FastAPI', 'Redis', 'Qdrant', 'Docker'],
     code: 'https://github.com/ElJoker63/my-gateway'
   },
@@ -175,7 +201,8 @@ export const timeline = [
     title: 'zcode-skills',
     icon: 'ic-shield',
     stars: 0,
-    desc: 'Colección de más de 870 skills de ciberseguridad para ZCode: red team, blue team, threat intelligence, análisis de malware, cloud security y cumplimiento normativo.',
+    role: 'Investigación y seguridad',
+    desc: 'Colección curada de más de 870 skills de seguridad ofensiva y defensiva para ZCode: red team, threat intelligence, análisis de malware y cloud hardening.',
     tags: ['Security', 'Red Team', 'Docs'],
     code: 'https://github.com/ElJoker63/zcode-skills'
   },
@@ -185,19 +212,23 @@ export const timeline = [
     title: 'tgdown-app',
     icon: 'ic-smartphone',
     stars: 1,
-    desc: 'Cliente nativo Android (Jetpack Compose) para gestionar remotamente un backend de descargas de Telegram: dashboard en tiempo real, explorador de archivos remoto y detección de multimedia.',
+    featured: true,
+    role: 'Desarrollador Android full-stack',
+    desc: 'Cliente Android en Jetpack Compose para administrar servidores remotos de descarga de Telegram: monitorización en vivo, gestor de archivos y detección multimedia.',
     tags: ['Kotlin', 'Jetpack Compose', 'Retrofit'],
     code: 'https://github.com/ElJoker63/tgdown-app'
   },
   {
     date: 'Sep 2026',
-    category: 'Media',
+    category: 'Media & Desktop',
     title: 'MediaHub',
     icon: 'ic-monitor',
-    stars: 1,
+    stars: 2,
+    featured: true,
     current: true,
-    desc: 'Aplicación de escritorio multiplataforma para explorar, reproducir y descargar series y películas, con una interfaz oscura inspirada en Apple TV y gestor de descargas integrado.',
-    tags: ['Desktop', 'Cross-platform'],
+    role: 'Arquitectura, UI y desarrollo',
+    desc: 'Aplicación de escritorio multiplataforma con estética inspirada en Apple TV para descubrir, reproducir y descargar películas y series, con gestor de descargas integrado.',
+    tags: ['Desktop', 'Cross-platform', 'UI/UX'],
     code: 'https://github.com/ElJoker63/MediaHub'
   }
 ]
@@ -207,25 +238,29 @@ export const contacts = [
     icon: 'ic-send',
     name: 'Telegram',
     handle: '@ElJoker63',
-    url: 'https://t.me/ElJoker63'
-  },
-  {
-    icon: 'ic-camera',
-    name: 'Instagram',
-    handle: '@eljoker.cuba',
-    url: 'https://instagram.com/eljoker.cuba'
-  },
-  {
-    icon: 'ic-x',
-    name: 'X / Twitter',
-    handle: '@ElJoker630',
-    url: 'https://x.com/ElJoker630'
+    url: 'https://t.me/ElJoker63',
+    note: 'Donde respondo más rápido'
   },
   {
     icon: 'ic-github',
     name: 'GitHub',
     handle: '@ElJoker63',
-    url: 'https://github.com/ElJoker63'
+    url: 'https://github.com/ElJoker63',
+    note: 'Código, repos y colaboraciones'
+  },
+  {
+    icon: 'ic-x',
+    name: 'X / Twitter',
+    handle: '@ElJoker630',
+    url: 'https://x.com/ElJoker630',
+    note: 'Actualizaciones y proyectos'
+  },
+  {
+    icon: 'ic-camera',
+    name: 'Instagram',
+    handle: '@eljoker.cuba',
+    url: 'https://instagram.com/eljoker.cuba',
+    note: 'Fotografía y día a día'
   }
 ]
 

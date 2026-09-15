@@ -1,22 +1,45 @@
 <script setup>
+import { computed } from 'vue'
+import { useGitHub } from '../lib/github.js'
 import SvgIcon from './SvgIcon.vue'
 
-defineProps({
+const props = defineProps({
   project: { type: Object, required: true }
+})
+
+const { getRepoStars, isSynced } = useGitHub()
+
+// Estrellas reactivas: obtiene las de la API de GitHub en vivo con fallback local
+const currentStars = computed(() => {
+  return getRepoStars(props.project.title, props.project.stars)
 })
 </script>
 
 <template>
   <article class="card spot-card">
     <div class="card__top">
-      <span class="icon-badge"><SvgIcon :name="project.icon" :size="20" /></span>
-      <span class="card__stars mono" :title="`${project.stars} estrellas en GitHub`">
-        <SvgIcon name="ic-star" :size="13" /> {{ project.stars }}
-      </span>
+      <div class="card__badges">
+        <span class="icon-badge"><SvgIcon :name="project.icon" :size="20" /></span>
+        <span v-if="project.featured" class="card__featured mono">Destacado</span>
+      </div>
+      <a
+        :href="`${project.code}/stargazers`"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="card__stars mono"
+        :title="`${currentStars} estrellas en GitHub · Clic para ver o dar estrella`"
+      >
+        <SvgIcon name="ic-star" :size="13" />
+        <span>{{ currentStars }}</span>
+        <span v-if="isSynced" class="card__stars-live" title="Sincronizado en vivo con GitHub" aria-label="En vivo"></span>
+      </a>
     </div>
 
     <h3 class="card__title">{{ project.title }}</h3>
     <p class="card__meta mono">{{ project.date }} · {{ project.category }}</p>
+    <p v-if="project.role" class="card__role mono">
+      <span class="card__role-label">Rol:</span> {{ project.role }}
+    </p>
     <p class="card__desc">{{ project.desc }}</p>
 
     <ul class="card__tags">
@@ -43,6 +66,32 @@ defineProps({
   align-items: center;
   margin-bottom: 16px;
 }
+.card__badges {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card__featured {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(120deg, var(--violet), var(--fuchsia));
+  padding: 3px 9px;
+  border-radius: 999px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.card__role {
+  font-size: 0.74rem;
+  color: var(--cyan);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.card__role-label {
+  color: var(--dimmer);
+}
 .card__stars {
   display: inline-flex;
   align-items: center;
@@ -53,6 +102,21 @@ defineProps({
   background: rgba(251, 191, 36, 0.07);
   padding: 4px 10px;
   border-radius: 999px;
+  transition: transform 0.3s var(--ease), border-color 0.3s, background 0.3s;
+}
+.card__stars:hover {
+  transform: translateY(-2px);
+  border-color: rgba(251, 191, 36, 0.5);
+  background: rgba(251, 191, 36, 0.14);
+}
+.card__stars-live {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green);
+  display: inline-block;
+  margin-left: 1px;
 }
 
 .card__title {

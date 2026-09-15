@@ -1,7 +1,8 @@
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { gsap, reducedMotion, ScrollTrigger } from '../lib/motion.js'
-import { stats, typingPhrases } from '../data/portfolio.js'
+import { CV_URL, stats as defaultStats, typingPhrases } from '../data/portfolio.js'
+import { useGitHub } from '../lib/github.js'
 import SvgIcon from './SvgIcon.vue'
 import TerminalCard from './TerminalCard.vue'
 
@@ -9,6 +10,16 @@ const root = ref(null)
 const typed = ref('')
 const caretOn = ref(true)
 const statRefs = ref([])
+
+const { userProfile, isSynced } = useGitHub()
+
+// Estadísticas con reactividad en vivo desde GitHub
+const stats = computed(() => [
+  { value: userProfile.publicRepos || defaultStats[0].value, label: 'Repositorios' },
+  { value: defaultStats[1].value, label: 'Estrellas dadas' },
+  { value: userProfile.followers ?? defaultStats[2].value, label: 'Seguidores' },
+  { value: userProfile.following ?? defaultStats[3].value, label: 'Siguiendo' }
+])
 
 let timers = []
 let ctx = null
@@ -59,8 +70,19 @@ onMounted(() => {
     typeLoop()
   }
 
-  // Contadores
-  statRefs.value.forEach((el, i) => el && animateStat(el, stats[i].value))
+  // Contadores iniciales
+  statRefs.value.forEach((el, i) => el && animateStat(el, stats.value[i].value))
+
+  // Si las stats se actualizan en vivo después de montar, refrescar visualmente
+  watch(isSynced, (synced) => {
+    if (synced) {
+      statRefs.value.forEach((el, i) => {
+        if (el && stats.value[i]) {
+          el.textContent = String(stats.value[i].value)
+        }
+      })
+    }
+  })
 
   if (reducedMotion) return
 
@@ -91,26 +113,30 @@ onBeforeUnmount(() => {
       <div class="hero__copy">
         <p class="hero__eyebrow mono">
           <span class="hero__pulse" aria-hidden="true"></span>
-          Disponible para nuevos proyectos
+          Disponible para nuevos proyectos &amp; colaboraciones
         </p>
         <h1 class="hero__title">
-          Hola, soy <span class="grad-text">ElJoker63</span>.
+          Hola, soy <span class="grad-text">Víctor Morejón</span>.
         </h1>
         <p class="hero__typing">
           Construyo <span class="hero__typed mono">{{ typed }}</span><span class="hero__caret" :class="{ on: caretOn }" aria-hidden="true"></span>
         </p>
         <p class="hero__desc">
-          Enfocado en desarrollo de software, infraestructura y automatización. Miembro de
-          <strong>AEware Developers</strong>. Me gusta construir herramientas que resuelven
-          problemas reales — desde bots y APIs hasta gateways de IA.
+          Desarrollador enfocado en backend, infraestructura y automatización. En internet me conocen
+          como <strong>ElJoker63</strong> y formo parte de <strong>AEware Developers</strong>. Me apasiona
+          crear herramientas útiles que resuelven problemas concretos — con código limpio, alta resiliencia y cero rodeos.
         </p>
         <div class="hero__actions">
           <a href="#proyectos" class="btn btn--primary">
             Ver proyectos
             <SvgIcon name="ic-arrow-right" :size="17" />
           </a>
+          <a :href="CV_URL" target="_blank" rel="noopener noreferrer" class="btn btn--ghost" title="Abrir Currículum Vitae en PDF">
+            <SvgIcon name="ic-file-text" :size="16" />
+            Ver CV
+          </a>
           <a href="https://github.com/ElJoker63" target="_blank" rel="noopener noreferrer" class="btn btn--ghost">
-            <SvgIcon name="ic-github" :size="18" />
+            <SvgIcon name="ic-github" :size="17" />
             GitHub
           </a>
         </div>

@@ -13,7 +13,7 @@ function toTop() {
   <footer class="footer">
     <div class="container footer__inner">
       <p class="footer__copy">
-        © {{ year }} ElJoker63 — Hecho con Vue 3, Vite y demasiado café.
+        © {{ year }} Víctor Morejón (ElJoker63) — Hecho con Vue 3, Vite y café.
       </p>
       <button class="footer__top" aria-label="Volver arriba" @click="toTop">
         <SvgIcon name="ic-chevron-up" :size="18" />

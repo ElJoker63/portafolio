@@ -54,7 +54,7 @@ onBeforeUnmount(() => timers.forEach(clearTimeout))
       <span class="term__dot term__dot--r"></span>
       <span class="term__dot term__dot--y"></span>
       <span class="term__dot term__dot--g"></span>
-      <span class="term__title mono">eljoker63@dev: ~</span>
+      <span class="term__title mono">victor@eljoker63: ~</span>
     </div>
     <div class="term__body mono" aria-hidden="true">
       <p v-for="(l, i) in visibleLines" :key="i" :class="`line line--${l.type}`">

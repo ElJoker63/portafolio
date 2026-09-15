@@ -1,15 +1,34 @@
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-import { gsap, reducedMotion } from '../lib/motion.js'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
+import { gsap, reducedMotion, ScrollTrigger } from '../lib/motion.js'
 import { timeline } from '../data/portfolio.js'
+import { useGitHub } from '../lib/github.js'
 import SvgIcon from './SvgIcon.vue'
 import ProjectCard from './ProjectCard.vue'
 
 const root = ref(null)
 const lineFill = ref(null)
+const filterMode = ref('all') // 'all' | 'featured'
+
+const { userProfile } = useGitHub()
+const totalRepos = computed(() => userProfile.publicRepos || 164)
 let ctx = null
 
 function pad(n) { return String(n + 1).padStart(2, '0') }
+
+const displayedProjects = computed(() => {
+  if (filterMode.value === 'featured') {
+    return timeline.filter((p) => p.featured)
+  }
+  return timeline
+})
+
+function setFilter(mode) {
+  filterMode.value = mode
+  nextTick(() => {
+    ScrollTrigger.refresh()
+  })
+}
 
 onMounted(() => {
   if (reducedMotion) {
@@ -54,9 +73,31 @@ onBeforeUnmount(() => ctx?.revert())
         <p class="section__kicker mono">// 03 · trayectoria</p>
         <h2 class="section__title">Mi hoja de ruta como developer.</h2>
         <p class="section__lead">
-          Un recorrido cronológico —de más antiguo a más reciente— por los proyectos que marcaron
-          mi evolución: de una web sencilla a infraestructura de mensajería, seguridad e IA.
+          Un recorrido cronológico por los proyectos que marcaron mi evolución: desde utilidades esenciales
+          hasta gateways de IA, aplicaciones Android nativas y clientes de mensajería.
         </p>
+      </div>
+
+      <!-- Filtro de vista: destacados vs trayectoria completa (criterio de usabilidad de Brais Moure) -->
+      <div class="timeline__filters-wrap reveal">
+        <div class="timeline__filters">
+          <button
+            type="button"
+            class="timeline__filter-btn mono"
+            :class="{ active: filterMode === 'all' }"
+            @click="setFilter('all')"
+          >
+            Todos los hitos ({{ timeline.length }})
+          </button>
+          <button
+            type="button"
+            class="timeline__filter-btn mono"
+            :class="{ active: filterMode === 'featured' }"
+            @click="setFilter('featured')"
+          >
+            ★ Proyectos destacados ({{ timeline.filter(p => p.featured).length }})
+          </button>
+        </div>
       </div>
 
       <div class="timeline">
@@ -65,7 +106,7 @@ onBeforeUnmount(() => ctx?.revert())
         </div>
 
         <article
-          v-for="(p, i) in timeline"
+          v-for="(p, i) in displayedProjects"
           :key="p.title"
           class="timeline__item"
           :class="i % 2 === 0 ? 'timeline__item--left' : 'timeline__item--right'"
@@ -90,7 +131,7 @@ onBeforeUnmount(() => ctx?.revert())
           rel="noopener noreferrer"
         >
           <SvgIcon name="ic-github" :size="17" />
-          Ver los 163 repositorios en GitHub
+          Ver los {{ totalRepos }} repositorios en GitHub
           <SvgIcon name="ic-external" :size="14" />
         </a>
       </div>
@@ -99,6 +140,35 @@ onBeforeUnmount(() => ctx?.revert())
 </template>
 
 <style scoped>
+/* Filtro de destacados vs todos */
+.timeline__filters-wrap {
+  display: flex;
+  margin-bottom: clamp(24px, 3.5vw, 38px);
+}
+.timeline__filters {
+  display: inline-flex;
+  gap: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 5px;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+}
+.timeline__filter-btn {
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--dim);
+  transition: color 0.3s, background 0.3s, box-shadow 0.3s;
+}
+.timeline__filter-btn:hover { color: var(--text) }
+.timeline__filter-btn.active {
+  background: var(--surface-2);
+  color: #fff;
+  box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.45);
+}
+
 .timeline { position: relative; padding-block: 12px }
 
 /* Línea central */
