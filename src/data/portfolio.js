@@ -178,6 +178,20 @@ export const timeline = [
     code: 'https://github.com/ElJoker63/pysteamcmdwrapper'
   },
   {
+    date: { es: 'Oct 2024', en: 'Oct 2024' },
+    category: { es: 'Apps de escritorio (Flet)', en: 'Desktop Apps (Flet)' },
+    title: 'GENTOKENPLUS',
+    icon: 'ic-box',
+    stars: 1,
+    role: { es: 'Desarrollo desktop en Python/Flet', en: 'Python/Flet desktop developer' },
+    desc: {
+      es: 'Aplicación de escritorio multiplataforma desarrollada en Python con Flet para generar y gestionar tokens de acceso a plataformas Moodle, con pipeline CI/CD automatizado.',
+      en: 'Cross-platform desktop application built in Python with Flet to generate and manage Moodle API tokens, featuring automated Windows CI/CD packaging.'
+    },
+    tags: ['Python', 'Flet', 'Moodle', 'Desktop GUI'],
+    code: 'https://github.com/ElJoker63/GENTOKENPLUS'
+  },
+  {
     date: { es: 'Nov 2024', en: 'Nov 2024' },
     category: { es: 'Apps Android', en: 'Android Apps' },
     title: 'cambio-actual',
@@ -221,6 +235,34 @@ export const timeline = [
     code: 'https://github.com/ElJoker63/MOTO-LAKE'
   },
   {
+    date: { es: 'Ago 2025', en: 'Aug 2025' },
+    category: { es: 'Descarga multimedia & backend', en: 'Media Downloader & Backend' },
+    title: 'AEMediaDL',
+    icon: 'ic-download',
+    stars: 0,
+    role: { es: 'Desarrollador backend en AEware', en: 'Backend developer at AEware' },
+    desc: {
+      es: 'Servicio y bot de descarga multimedia para la comunidad AEware Developers. Procesa enlaces de diversas redes sociales y fuentes de video optimizando ancho de banda.',
+      en: 'Media downloader service and bot for the AEware Developers community. Processes links across social networks and video platforms with bandwidth optimizations.'
+    },
+    tags: ['Python', 'AEware', 'Automation', 'Video Processing'],
+    code: 'https://github.com/ElJoker63/AEMediaDL'
+  },
+  {
+    date: { es: 'Dic 2025', en: 'Dec 2025' },
+    category: { es: 'Orquestación & DevOps', en: 'Orchestration & DevOps' },
+    title: 'telegram-docker-vm',
+    icon: 'ic-server',
+    stars: 0,
+    role: { es: 'Desarrollo backend y control Docker', en: 'Backend development & Docker control' },
+    desc: {
+      es: 'Bot de Telegram que orquesta entornos de desarrollo aislados en contenedores Docker. Permite aprovisionamiento on-demand, terminal SSH y web interactiva, y control dinámico de CPU y RAM.',
+      en: 'Telegram bot orchestrating isolated Docker dev environments on demand. Features secure SSH/Web terminal access, dynamic CPU/RAM allocation, and container lifecycle management.'
+    },
+    tags: ['Python', 'Docker', 'Telegram API', 'SSH', 'Linux'],
+    code: 'https://github.com/ElJoker63/telegram-docker-vm'
+  },
+  {
     date: { es: 'Feb 2026', en: 'Feb 2026' },
     category: { es: 'Automatización de escritorio', en: 'Desktop Automation' },
     title: 'volume-win',
@@ -235,23 +277,51 @@ export const timeline = [
     code: 'https://github.com/ElJoker63/volume-win'
   },
   {
+    date: { es: 'May 2026', en: 'May 2026' },
+    category: { es: 'Ciberseguridad & IA', en: 'Cybersecurity & AI' },
+    title: 'deep-eye',
+    icon: 'ic-shield',
+    stars: 0,
+    role: { es: 'Integración de IA (Groq, Gemini, LM Studio)', en: 'AI Integration (Groq, Gemini, LM Studio)' },
+    desc: {
+      es: 'Suite de pentesting y análisis de vulnerabilidades asistida por IA. Desarrollé la integración completa para proveedores de ultra-baja latencia como Groq AI, Google Gemini y servidores LLM locales con LM Studio.',
+      en: 'AI-assisted pentesting and vulnerability assessment suite. Engineered integrations for ultra-low latency inference with Groq AI, Google Gemini, and local LLMs via LM Studio.'
+    },
+    tags: ['Python', 'Groq', 'Gemini', 'LM Studio', 'Pentesting'],
+    code: 'https://github.com/ElJoker63/deep-eye'
+  },
+  {
     date: { es: 'Jun 2026', en: 'Jun 2026' },
-    category: { es: 'Mensajería & bots', en: 'Messaging & Bots' },
+    category: { es: 'IoT & Bluetooth BLE', en: 'IoT & Bluetooth BLE' },
+    title: 'z407-remote-control',
+    icon: 'ic-volume',
+    stars: 0,
+    role: { es: 'Ingeniería inversa BLE y cliente Android', en: 'BLE reverse engineering & Android app' },
+    desc: {
+      es: 'Control remoto inalámbrico para altavoces Logitech Z407 vía Bluetooth Low Energy (BLE). Permite gestionar volumen principal, graves del subwoofer, muteo y conmutar entre entradas (Bluetooth, AUX y USB).',
+      en: 'Wireless remote control app for Logitech Z407 speakers via Bluetooth Low Energy (BLE). Controls master volume, subwoofer bass level, mute, and input switching (Bluetooth, AUX, USB).'
+    },
+    tags: ['Kotlin', 'Android', 'BLE', 'Logitech', 'IoT'],
+    code: 'https://github.com/ElJoker63/z407-remote-control'
+  },
+  {
+    date: { es: 'Jun 2026', en: 'Jun 2026' },
+    category: { es: 'SDK & Arquitectura Asíncrona', en: 'SDK & Async Architecture' },
     title: 'toDus-API',
-    icon: 'ic-chat',
+    icon: 'ic-terminal',
     stars: 4,
     featured: true,
-    role: { es: 'Arquitectura de librería y eventos', en: 'Library architecture & event engine' },
+    role: { es: 'EventBus, MessageQueue y transporte asíncrono', en: 'EventBus, MessageQueue & async transport' },
     desc: {
-      es: 'Cliente moderno en Python para ToDus, la plataforma de mensajería cubana. Permite bots de soporte, gestión de canales, envíos multimedia y eventos en tiempo real.',
-      en: 'Modern event-driven Python client for ToDus, Cuba’s national messaging network. Powers support bots, channel management, media uploads, and real-time events.'
+      es: 'SDK asíncrono y robusto para toDus. Diseñé e implementé una arquitectura basada en EventBus desacoplado, MessageQueue con reintentos automáticos, RateLimiter adaptativo, transporte WebSocket y gestión de MAM.',
+      en: 'Robust asynchronous Python SDK for toDus. Engineered a decoupled EventBus architecture, MessageQueue with auto-retries, adaptive RateLimiter, WebSocket transport, and MAM event handling.'
     },
-    tags: ['Python', 'PyPI', 'MkDocs', 'CI/CD'],
+    tags: ['Python', 'AsyncIO', 'WebSockets', 'EventBus', 'SDK'],
     code: 'https://github.com/ElJoker63/toDus-API'
   },
   {
     date: { es: 'Jul 2026', en: 'Jul 2026' },
-    category: { es: 'Agentes de IA', en: 'AI Agents' },
+    category: { es: 'Agentes de IA & PaaS', en: 'AI Agents & PaaS' },
     title: 'coolify-overlord',
     icon: 'ic-bot',
     stars: 0,
@@ -261,7 +331,7 @@ export const timeline = [
       es: 'Skill para el agente Hermes que administra servidores y despliegues en Coolify por lenguaje natural: inspecciona contenedores, logs y despliegues sin entrar al panel.',
       en: 'Skill for the Hermes AI agent that manages Coolify self-hosted deployments using natural language: monitors containers, inspects logs, and handles deploys.'
     },
-    tags: ['AI Agent Skill', 'REST API', 'DevOps'],
+    tags: ['AI Agent Skill', 'REST API', 'DevOps', 'Coolify'],
     code: 'https://github.com/ElJoker63/coolify-overlord'
   },
   {
@@ -281,6 +351,36 @@ export const timeline = [
   },
   {
     date: { es: 'Ago 2026', en: 'Aug 2026' },
+    category: { es: 'App de Escritorio (Wails/Go)', en: 'Desktop App (Wails/Go)' },
+    title: 'ipa-downloader',
+    icon: 'ic-download',
+    stars: 0,
+    featured: true,
+    role: { es: 'Desarrollo de app GUI multiplataforma', en: 'Cross-platform GUI app development' },
+    desc: {
+      es: 'Aplicación de escritorio moderna desarrollada para el ecosistema UDYAT con Wails (Go + Frontend moderno). Transforma herramientas CLI en una GUI completa para buscar, descargar y gestionar paquetes .ipa de Apple App Store.',
+      en: 'Modern desktop GUI application built for the UDYAT ecosystem using Wails (Go + Modern Frontend). Transforms CLI tools into a full desktop suite to search and download iOS/macOS .ipa packages directly.'
+    },
+    tags: ['Go', 'Wails', 'Desktop GUI', 'iOS', 'CI/CD'],
+    code: 'https://github.com/ElJoker63/ipa-downloader'
+  },
+  {
+    date: { es: 'Ago 2026', en: 'Aug 2026' },
+    category: { es: 'Android & Inteligencia Artificial', en: 'Android & Artificial Intelligence' },
+    title: 'Chat_IA_NVIDEA',
+    icon: 'ic-chat',
+    stars: 0,
+    featured: true,
+    role: { es: 'Arquitectura completa en Jetpack Compose', en: 'Full Jetpack Compose architecture' },
+    desc: {
+      es: 'Aplicación Android premium (NVIDIA LLM Chat) construida íntegramente con Jetpack Compose para interactuar con la API NVIDIA NIM. Streaming en tiempo real, fondo neuronal interactivo, soporte multimodal y optimizaciones R8.',
+      en: 'Premium native Android app (NVIDIA LLM Chat) built with Jetpack Compose to chat with NVIDIA NIM models. Features real-time streaming, dynamic neural canvas background, multimodal support, and R8 optimization.'
+    },
+    tags: ['Kotlin', 'Jetpack Compose', 'NVIDIA NIM', 'AI Chat', 'Coroutines'],
+    code: 'https://github.com/ElJoker63/Chat_IA_NVIDEA'
+  },
+  {
+    date: { es: 'Ago 2026', en: 'Aug 2026' },
     category: { es: 'Ciberseguridad', en: 'Cybersecurity' },
     title: 'zcode-skills',
     icon: 'ic-shield',
@@ -294,18 +394,18 @@ export const timeline = [
     code: 'https://github.com/ElJoker63/zcode-skills'
   },
   {
-    date: { es: 'Ago 2026', en: 'Aug 2026' },
+    date: { es: 'Sep 2026', en: 'Sep 2026' },
     category: { es: 'Apps Android', en: 'Android Apps' },
     title: 'tgdown-app',
     icon: 'ic-smartphone',
     stars: 1,
     featured: true,
-    role: { es: 'Desarrollador Android full-stack', en: 'Full-stack Android developer' },
+    role: { es: 'Desarrollador Android (Jetpack Compose)', en: 'Android Developer (Jetpack Compose)' },
     desc: {
-      es: 'Cliente Android en Jetpack Compose para administrar servidores remotos de descarga de Telegram: monitorización en vivo, gestor de archivos y detección multimedia.',
-      en: 'Modern Android client in Jetpack Compose to manage a remote Telegram download server: live progress dashboard, remote file explorer, and media detection.'
+      es: 'Cliente Android nativo (TelegramDL) con estética dark glassmorphism e iconos HugeIcons. Funciona como controlador remoto en tiempo real para servidores de descargas en la nube, con autenticación segura y sincronización.',
+      en: 'Native Android client (TelegramDL) with dark glassmorphic styling and HugeIcons. Operates as a real-time remote dashboard for cloud download servers, featuring secure auth and background sync.'
     },
-    tags: ['Kotlin', 'Jetpack Compose', 'Retrofit'],
+    tags: ['Kotlin', 'Jetpack Compose', 'HugeIcons', 'Glassmorphism'],
     code: 'https://github.com/ElJoker63/tgdown-app'
   },
   {
