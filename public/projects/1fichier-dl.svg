@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <rect width="800" height="450" fill="#0a0a14"/>
+  <rect x="25" y="25" width="750" height="400" rx="18" fill="#121226" stroke="#262648" stroke-width="1.5"/>
+
+  <text x="55" y="68" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="20" font-weight="700">1fichier-dl · CLI High-Speed Downloader</text>
+  <text x="55" y="88" fill="#94a3b8" font-family="monospace" font-size="12">Multi-connection Stream · Timer Bypass &amp; Resume Engine</text>
+
+  <rect x="50" y="115" width="700" height="285" rx="12" fill="#080814" stroke="#1d1d36" stroke-width="1.5"/>
+  <text x="75" y="155" fill="#fbbf24" font-family="monospace" font-size="13">&gt; 1fichier-dl https://1fichier.com/?x98a7bc21 --threads 8</text>
+  <text x="75" y="185" fill="#e2e8f0" font-family="monospace" font-size="13">File: ArchLinux-2026.iso (2.8 GB)</text>
+  <text x="75" y="210" fill="#4ade80" font-family="monospace" font-size="13">Bypassing countdown waiting room... (0s wait)</text>
+  <text x="75" y="240" fill="#38bdf8" font-family="monospace" font-size="13">Chunk stream: [8 active worker connections]</text>
+  
+  <rect x="75" y="260" width="600" height="18" rx="9" fill="#1f1f3a"/>
+  <rect x="75" y="260" width="510" height="18" rx="9" fill="#fbbf24"/>
+  <text x="75" y="305" fill="#f8fafc" font-family="monospace" font-size="13">Progress: 85% · 2.38 GB / 2.80 GB · Speed: 18.6 MB/s · ETA: 22s</text>
+  <text x="75" y="340" fill="#34d399" font-family="monospace" font-size="13">✔ Checksum SHA256 verified on-the-fly</text>
+</svg>

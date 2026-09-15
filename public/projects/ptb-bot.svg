@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <rect width="800" height="450" fill="#090d18"/>
+  <rect x="25" y="25" width="750" height="400" rx="18" fill="#11192e" stroke="#223158" stroke-width="1.5"/>
+
+  <text x="55" y="68" fill="#60a5fa" font-family="system-ui, sans-serif" font-size="20" font-weight="700">PTB_Bot-Example · Telegram Assistant Templates</text>
+  <text x="55" y="88" fill="#94a3b8" font-family="monospace" font-size="12">python-telegram-bot · Handlers, ConversationHandler &amp; Webhooks</text>
+
+  <rect x="50" y="115" width="700" height="285" rx="12" fill="#0b1020" stroke="#1c2949" stroke-width="1.5"/>
+  <text x="75" y="160" fill="#60a5fa" font-family="monospace" font-size="13">from telegram.ext import Updater, CommandHandler, CallbackQueryHandler</text>
+  <text x="75" y="195" fill="#34d399" font-family="monospace" font-size="13"># Production-ready Telegram bot architecture with async dispatching</text>
+  <text x="75" y="225" fill="#e2e8f0" font-family="monospace" font-size="13">dispatcher.add_handler(CommandHandler("start", start_callback))</text>
+  <text x="75" y="255" fill="#e2e8f0" font-family="monospace" font-size="13">dispatcher.add_handler(ConversationHandler(states={...}))</text>
+  <text x="75" y="295" fill="#fbbf24" font-family="monospace" font-size="13">Modular templates built to jumpstart Python Telegram bot projects</text>
+</svg>

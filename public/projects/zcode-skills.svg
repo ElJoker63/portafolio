@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <rect width="800" height="450" fill="#0f0914"/>
+  <rect x="25" y="25" width="750" height="400" rx="18" fill="#180e22" stroke="#331c46" stroke-width="1.5"/>
+
+  <text x="55" y="68" fill="#e11d48" font-family="system-ui, sans-serif" font-size="20" font-weight="700">🔐 ZCode Skills Collection</text>
+  <text x="55" y="88" fill="#94a3b8" font-family="monospace" font-size="12">870+ Curated Cybersecurity &amp; Forensics Skills</text>
+
+  <rect x="50" y="115" width="700" height="285" rx="12" fill="#0d0714" stroke="#2a173a" stroke-width="1.5"/>
+  <text x="75" y="155" fill="#f43f5e" font-family="monospace" font-size="13">🔴 Red Team &amp; Offensive (340 skills): Active Directory, C2, Evasion</text>
+  <text x="75" y="185" fill="#38bdf8" font-family="monospace" font-size="13">🔵 Blue Team &amp; Defense (210 skills): SIEM, Splunk, Memory Forensics</text>
+  <text x="75" y="215" fill="#a855f7" font-family="monospace" font-size="13">🟣 Cloud Security (160 skills): AWS IAM Hardening, K8s RBAC</text>
+  <text x="75" y="245" fill="#34d399" font-family="monospace" font-size="13">🟢 Reverse Engineering (160 skills): Ghidra Scripts, APK Analysis</text>
+  <text x="75" y="295" fill="#fbbf24" font-family="monospace" font-size="13">✔ Integración directa con ZCode AI Coding Assistant</text>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <rect width="800" height="450" fill="#07070d"/>
+  <rect x="25" y="25" width="750" height="400" rx="18" fill="#0f0f1c" stroke="#23233c" stroke-width="1.5"/>
+
+  <text x="55" y="68" fill="#a78bfa" font-family="system-ui, sans-serif" font-size="20" font-weight="700">volume-win · Master Windows Audio CLI</text>
+  <text x="55" y="88" fill="#71717a" font-family="monospace" font-size="12">Python · PyCaw · Windows Core Audio Endpoints</text>
+
+  <!-- Terminal Box -->
+  <rect x="50" y="115" width="700" height="285" rx="12" fill="#05050a" stroke="#1d1d33" stroke-width="1.5"/>
+  <text x="75" y="155" fill="#a78bfa" font-family="monospace" font-size="14">&gt; volume-win --list-endpoints</text>
+  <text x="75" y="185" fill="#e4e4e7" font-family="monospace" font-size="13">[0] Speakers (Logitech Z407 Bluetooth Audio)  [DEFAULT] - 68%</text>
+  <text x="75" y="210" fill="#71717a" font-family="monospace" font-size="13">[1] Realtek High Definition Audio - 100%</text>
+  <text x="75" y="245" fill="#a78bfa" font-family="monospace" font-size="14">&gt; volume-win --set 75 --smooth</text>
+  <text x="75" y="275" fill="#34d399" font-family="monospace" font-size="13">✔ Volume updated: [███████████████░░░░░] 75% (-7.5 dB)</text>
+  <text x="75" y="310" fill="#a78bfa" font-family="monospace" font-size="14">&gt; volume-win --listen-hotkeys</text>
+  <text x="75" y="340" fill="#38bdf8" font-family="monospace" font-size="13">Listening on Ctrl+Alt+Up / Down / Mute (0ms latency listener active)</text>
+</svg>

@@ -6,11 +6,13 @@ import { useI18n } from '../lib/i18n.js'
 import { useGitHub } from '../lib/github.js'
 import SvgIcon from './SvgIcon.vue'
 import ProjectCard from './ProjectCard.vue'
+import ImageLightbox from './ImageLightbox.vue'
 
 const { t } = useI18n()
 const root = ref(null)
 const lineFill = ref(null)
 const filterMode = ref('all') // 'all' | 'featured'
+const activeLightboxProject = ref(null)
 
 const { userProfile } = useGitHub()
 const totalRepos = computed(() => userProfile.publicRepos || 164)
@@ -30,6 +32,10 @@ function setFilter(mode) {
   nextTick(() => {
     ScrollTrigger.refresh()
   })
+}
+
+function openLightbox(project) {
+  activeLightboxProject.value = project
 }
 
 onMounted(() => {
@@ -118,7 +124,7 @@ onBeforeUnmount(() => ctx?.revert())
             :aria-label="`Hito ${pad(i)}`"
           >{{ pad(i) }}</div>
           <div class="timeline__card">
-            <ProjectCard :project="p" />
+            <ProjectCard :project="p" @open-image="openLightbox" />
           </div>
           <div class="timeline__spacer" aria-hidden="true"></div>
         </article>
@@ -137,6 +143,9 @@ onBeforeUnmount(() => ctx?.revert())
         </a>
       </div>
     </div>
+
+    <!-- Modal Lightbox para ampliar capturas de pantalla -->
+    <ImageLightbox :project="activeLightboxProject" @close="activeLightboxProject = null" />
   </section>
 </template>
 

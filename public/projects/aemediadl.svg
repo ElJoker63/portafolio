@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <rect width="800" height="450" fill="#080d18"/>
+  <rect x="25" y="25" width="750" height="400" rx="18" fill="#101a2f" stroke="#1f3258" stroke-width="1.5"/>
+
+  <text x="55" y="68" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="20" font-weight="700">AEMediaDL · AEware Media Downloader</text>
+  <text x="55" y="88" fill="#94a3b8" font-family="monospace" font-size="12">Multi-Platform Video Processing Engine &amp; Cache</text>
+
+  <rect x="50" y="115" width="700" height="285" rx="12" fill="#0a101e" stroke="#182745" stroke-width="1.5"/>
+  <text x="75" y="160" fill="#38bdf8" font-family="monospace" font-size="14">&gt; Processing video URL [YouTube / X / Instagram / TikTok]</text>
+  <text x="75" y="195" fill="#e2e8f0" font-family="monospace" font-size="13">Stream Format: 1080p60 H.264 + AAC (Audio merged)</text>
+  <text x="75" y="225" fill="#34d399" font-family="monospace" font-size="13">FFmpeg remuxing on-the-fly (0% re-encode CPU overhead)</text>
+  <text x="75" y="260" fill="#fbbf24" font-family="monospace" font-size="13">Direct Telegram bot dispatch with thumbnail &amp; metadata</text>
+</svg>

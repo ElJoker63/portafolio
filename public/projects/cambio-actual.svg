@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0a14"/>
+      <stop offset="100%" stop-color="#121324"/>
+    </linearGradient>
+    <linearGradient id="g-green" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <linearGradient id="g-cyan" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg1)"/>
+  <rect x="25" y="25" width="750" height="400" rx="18" fill="#141426" stroke="#252745" stroke-width="1.5"/>
+  
+  <!-- Header -->
+  <circle cx="65" cy="65" r="18" fill="#10b981" opacity="0.2"/>
+  <path d="M60 65 L70 65 M65 60 L65 70" stroke="#34d399" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="96" y="66" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700">Cambio Actual</text>
+  <text x="96" y="84" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">Tasas en tiempo real · ElToque API · Offline Cache</text>
+  <rect x="640" y="52" width="110" height="28" rx="14" fill="#10b981" fill-opacity="0.15" stroke="#10b981" stroke-width="1"/>
+  <text x="695" y="70" fill="#34d399" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">● EN VIVO</text>
+
+  <!-- Rate Cards Grid -->
+  <!-- USD -->
+  <rect x="50" y="115" width="215" height="135" rx="14" fill="#1b1c34" stroke="#2d3056" stroke-width="1.5"/>
+  <text x="70" y="145" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">USD / CUP</text>
+  <text x="70" y="185" fill="#ffffff" font-family="system-ui, sans-serif" font-size="34" font-weight="800">320</text>
+  <text x="142" y="185" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="16">CUP</text>
+  <rect x="70" y="205" width="76" height="24" rx="6" fill="#10b981" fill-opacity="0.15"/>
+  <text x="108" y="221" fill="#34d399" font-family="system-ui, sans-serif" font-size="11" font-weight="700" text-anchor="middle">+2.5 CUP ▲</text>
+
+  <!-- EUR -->
+  <rect x="290" y="115" width="215" height="135" rx="14" fill="#1b1c34" stroke="#2d3056" stroke-width="1.5"/>
+  <text x="310" y="145" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">EUR / CUP</text>
+  <text x="310" y="185" fill="#ffffff" font-family="system-ui, sans-serif" font-size="34" font-weight="800">345</text>
+  <text x="382" y="185" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="16">CUP</text>
+  <rect x="310" y="205" width="76" height="24" rx="6" fill="#10b981" fill-opacity="0.15"/>
+  <text x="348" y="221" fill="#34d399" font-family="system-ui, sans-serif" font-size="11" font-weight="700" text-anchor="middle">+1.0 CUP ▲</text>
+
+  <!-- MLC -->
+  <rect x="530" y="115" width="215" height="135" rx="14" fill="#1b1c34" stroke="#2d3056" stroke-width="1.5"/>
+  <text x="550" y="145" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="13" font-weight="600">MLC / CUP</text>
+  <text x="550" y="185" fill="#ffffff" font-family="system-ui, sans-serif" font-size="34" font-weight="800">280</text>
+  <text x="622" y="185" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="16">CUP</text>
+  <rect x="550" y="205" width="76" height="24" rx="6" fill="#64748b" fill-opacity="0.15"/>
+  <text x="588" y="221" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11" font-weight="700" text-anchor="middle">0.0 CUP ▬</text>
+
+  <!-- Mini Chart Box -->
+  <rect x="50" y="270" width="695" height="130" rx="14" fill="#181930" stroke="#2d3056" stroke-width="1"/>
+  <text x="75" y="300" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Tendencia últimos 30 días (USD informal)</text>
+  <!-- Polyline chart -->
+  <polyline points="75,370 140,360 210,365 280,350 350,345 420,335 490,340 560,325 630,320 700,310" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="700" cy="310" r="5" fill="#34d399"/>
+  <text x="670" y="298" fill="#34d399" font-family="monospace" font-size="12" font-weight="bold">320 CUP</text>
+</svg>
