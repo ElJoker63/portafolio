@@ -1,6 +1,7 @@
 <script setup>
-import { onBeforeUnmount, onMounted, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, watch } from 'vue'
 import { useI18n } from '../lib/i18n.js'
+import { useGitHub } from '../lib/github.js'
 import SvgIcon from './SvgIcon.vue'
 
 const props = defineProps({
@@ -10,7 +11,25 @@ const props = defineProps({
 const emit = defineEmits(['close'])
 
 const { t, isEs } = useI18n()
+const { getRepoPushedAt } = useGitHub()
 const baseUrl = import.meta.env.BASE_URL
+
+const formattedCommit = computed(() => {
+  if (!props.project) return ''
+  const dateStr = getRepoPushedAt(props.project.title, props.project.lastCommit)
+  if (!dateStr) return ''
+  try {
+    const d = new Date(dateStr)
+    if (isNaN(d.getTime())) return dateStr
+    return d.toLocaleDateString(isEs.value ? 'es-ES' : 'en-US', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    })
+  } catch {
+    return dateStr
+  }
+})
 
 function onKeyDown(e) {
   if (e.key === 'Escape') emit('close')
@@ -50,6 +69,10 @@ watch(
             <div class="lightbox-meta">
               <span class="lightbox-cat mono">{{ t(project.category) }}</span>
               <h3 class="lightbox-title">{{ project.title }}</h3>
+              <span v-if="formattedCommit" class="lightbox-commit mono">
+                <SvgIcon name="ic-git-commit" :size="13" />
+                {{ isEs ? 'Último commit:' : 'Last commit:' }} <strong>{{ formattedCommit }}</strong>
+              </span>
             </div>
             <button
               type="button"
@@ -88,10 +111,20 @@ watch(
                 :href="project.demo"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="btn btn--ghost"
+                class="btn btn--ghost btn--demo"
               >
                 <SvgIcon name="ic-external" :size="15" />
-                Demo
+                {{ isEs ? 'Demo en vivo' : 'Live demo' }}
+              </a>
+              <a
+                v-if="project.release"
+                :href="project.release"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn--ghost btn--release"
+              >
+                <SvgIcon name="ic-download" :size="15" />
+                {{ isEs ? 'Descargar' : 'Download' }}
               </a>
             </div>
           </div>
@@ -147,6 +180,18 @@ watch(
   font-size: 1.25rem;
   font-weight: 700;
   margin-top: 2px;
+}
+.lightbox-commit {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.73rem;
+  color: var(--dimmer);
+  margin-top: 4px;
+}
+.lightbox-commit strong {
+  color: #a78bfa;
+  font-weight: 600;
 }
 
 .lightbox-close {
@@ -205,7 +250,24 @@ watch(
 
 .lightbox-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
+}
+.btn--demo {
+  color: #34d399 !important;
+  border-color: rgba(52, 211, 153, 0.3) !important;
+}
+.btn--demo:hover {
+  background: rgba(52, 211, 153, 0.1) !important;
+  border-color: rgba(52, 211, 153, 0.6) !important;
+}
+.btn--release {
+  color: #38bdf8 !important;
+  border-color: rgba(56, 189, 248, 0.3) !important;
+}
+.btn--release:hover {
+  background: rgba(56, 189, 248, 0.1) !important;
+  border-color: rgba(56, 189, 248, 0.6) !important;
 }
 
 /* Transición */

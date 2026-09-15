@@ -126,6 +126,7 @@ export const timeline = [
     icon: 'ic-globe',
     stars: 2,
     image: 'projects/datafacil.png',
+    lastCommit: '2026-04-13',
     role: { es: 'Diseño y desarrollo web', en: 'Web design and development' },
     desc: {
       es: 'Sitio oficial de DataFacil, con soporte para Android y Windows Phone. Diseñado para ofrecer navegación fluida con gestión de contenidos desacoplada vía JSON.',
@@ -133,7 +134,8 @@ export const timeline = [
     },
     tags: ['HTML', 'CSS', 'JavaScript'],
     code: 'https://github.com/ElJoker63/DataFacil',
-    demo: 'https://datafacil.vercel.app'
+    demo: 'https://datafacil.vercel.app',
+    release: 'https://github.com/ElJoker63/DataFacil/releases/latest'
   },
   {
     date: { es: 'Dic 2021', en: 'Dec 2021' },
@@ -142,6 +144,7 @@ export const timeline = [
     icon: 'ic-chat',
     stars: 1,
     image: 'projects/ptb-bot.svg',
+    lastCommit: '2021-10-25',
     role: { es: 'Desarrollo backend en Python', en: 'Python backend development' },
     desc: {
       es: 'Plantillas y ejemplos prácticos de bots en Python. Nació para ahorrar tiempo a otros desarrolladores que comienzan en la creación de asistentes interactivos.',
@@ -157,6 +160,7 @@ export const timeline = [
     icon: 'ic-box',
     stars: 3,
     image: 'projects/repo-magisk.png',
+    lastCommit: '2025-11-04',
     role: { es: 'Despliegue y catálogo web', en: 'Deployment & web catalog' },
     desc: {
       es: 'Repositorio y catálogo web de módulos para MRepo (Magisk) en Netlify. Facilita descubrir e instalar módulos de personalización sin complicaciones.',
@@ -173,6 +177,7 @@ export const timeline = [
     icon: 'ic-terminal',
     stars: 0,
     image: 'projects/pysteamcmd.svg',
+    lastCommit: '2024-06-17',
     role: { es: 'Autor de librería open-source', en: 'Open-source library author' },
     desc: {
       es: 'Librería Python para interactuar con SteamCMD. Automatiza descargas de servidores y juegos de Windows directamente en entornos Linux sin interfaz gráfica.',
@@ -188,13 +193,15 @@ export const timeline = [
     icon: 'ic-box',
     stars: 1,
     image: 'projects/gentokenplus.svg',
+    lastCommit: '2024-11-01',
     role: { es: 'Desarrollo desktop en Python/Flet', en: 'Python/Flet desktop developer' },
     desc: {
       es: 'Aplicación de escritorio multiplataforma desarrollada en Python con Flet para generar y gestionar tokens de acceso a plataformas Moodle, con pipeline CI/CD automatizado.',
       en: 'Cross-platform desktop application built in Python with Flet to generate and manage Moodle API tokens, featuring automated Windows CI/CD packaging.'
     },
     tags: ['Python', 'Flet', 'Moodle', 'Desktop GUI'],
-    code: 'https://github.com/ElJoker63/GENTOKENPLUS'
+    code: 'https://github.com/ElJoker63/GENTOKENPLUS',
+    release: 'https://github.com/ElJoker63/GENTOKENPLUS/releases/latest'
   },
   {
     date: { es: 'Nov 2024', en: 'Nov 2024' },
@@ -204,13 +211,15 @@ export const timeline = [
     stars: 1,
     featured: true,
     image: 'projects/cambio-actual.svg',
+    lastCommit: '2026-09-08',
     role: { es: 'Desarrollador Android (Kotlin/Compose)', en: 'Android Developer (Kotlin/Compose)' },
     desc: {
       es: 'App nativa (Kotlin + Jetpack Compose) que monitoriza las tasas del mercado informal de divisas y cripto en Cuba. Funciona offline y ahorra datos móviles.',
       en: 'Native Android app (Kotlin + Jetpack Compose) tracking informal currency and crypto exchange rates in Cuba. Built with offline caching to save mobile data.'
     },
     tags: ['Kotlin', 'Jetpack Compose', 'Room', 'Retrofit'],
-    code: 'https://github.com/ElJoker63/cambio-actual'
+    code: 'https://github.com/ElJoker63/cambio-actual',
+    release: 'https://github.com/ElJoker63/cambio-actual/releases/latest'
   },
   {
     date: { es: 'Dic 2024', en: 'Dec 2024' },
@@ -219,6 +228,7 @@ export const timeline = [
     icon: 'ic-download',
     stars: 2,
     image: 'projects/1fichier-dl.svg',
+    lastCommit: '2024-12-04',
     role: { es: 'Desarrollo CLI y optimización', en: 'CLI development & optimization' },
     desc: {
       es: 'Gestor de descargas para 1Fichier que salta temporizadores de espera y reanuda descargas, pensado para conexiones con ancho de banda inestable.',
@@ -234,6 +244,7 @@ export const timeline = [
     icon: 'ic-refresh',
     stars: 1,
     image: 'projects/moto-lake.svg',
+    lastCommit: '2025-04-19',
     role: { es: 'Automatización y scripts de flasheo', en: 'Flashing scripts & automation' },
     desc: {
       es: 'Script automatizado para flashear LineageOS en el Moto G7 Plus: descarga ADB, Fastboot, TWRP y Magisk guiando al usuario paso a paso de forma segura.',
@@ -249,13 +260,15 @@ export const timeline = [
     icon: 'ic-download',
     stars: 0,
     image: 'projects/aemediadl.svg',
+    lastCommit: '2025-08-19',
     role: { es: 'Desarrollador backend en AEware', en: 'Backend developer at AEware' },
     desc: {
       es: 'Servicio y bot de descarga multimedia para la comunidad AEware Developers. Procesa enlaces de diversas redes sociales y fuentes de video optimizando ancho de banda.',
       en: 'Media downloader service and bot for the AEware Developers community. Processes links across social networks and video platforms with bandwidth optimizations.'
     },
     tags: ['Python', 'AEware', 'Automation', 'Video Processing'],
-    code: 'https://github.com/ElJoker63/AEMediaDL'
+    code: 'https://github.com/ElJoker63/AEMediaDL',
+    release: 'https://github.com/ElJoker63/AEMediaDL/releases/latest'
   },
   {
     date: { es: 'Dic 2025', en: 'Dec 2025' },
@@ -264,6 +277,7 @@ export const timeline = [
     icon: 'ic-server',
     stars: 0,
     image: 'projects/telegram-docker-vm.svg',
+    lastCommit: '2025-12-11',
     role: { es: 'Desarrollo backend y control Docker', en: 'Backend development & Docker control' },
     desc: {
       es: 'Bot de Telegram que orquesta entornos de desarrollo aislados en contenedores Docker. Permite aprovisionamiento on-demand, terminal SSH y web interactiva, y control dinámico de CPU y RAM.',
@@ -279,6 +293,7 @@ export const timeline = [
     icon: 'ic-volume',
     stars: 2,
     image: 'projects/volume-win.svg',
+    lastCommit: '2026-02-04',
     role: { es: 'Desarrollo de utilidad nativa', en: 'Native utility developer' },
     desc: {
       es: 'Herramienta ligera en Python para controlar el volumen maestro de Windows por consola y atajos, sin servicios pesados en segundo plano.',
@@ -294,6 +309,7 @@ export const timeline = [
     icon: 'ic-shield',
     stars: 0,
     image: 'projects/deep-eye.png',
+    lastCommit: '2026-05-05',
     role: { es: 'Integración de IA (Groq, Gemini, LM Studio)', en: 'AI Integration (Groq, Gemini, LM Studio)' },
     desc: {
       es: 'Suite de pentesting y análisis de vulnerabilidades asistida por IA. Desarrollé la integración completa para proveedores de ultra-baja latencia como Groq AI, Google Gemini y servidores LLM locales con LM Studio.',
@@ -309,6 +325,7 @@ export const timeline = [
     icon: 'ic-volume',
     stars: 0,
     image: 'projects/z407-remote.svg',
+    lastCommit: '2026-07-12',
     role: { es: 'Ingeniería inversa BLE y cliente Android', en: 'BLE reverse engineering & Android app' },
     desc: {
       es: 'Control remoto inalámbrico para altavoces Logitech Z407 vía Bluetooth Low Energy (BLE). Permite gestionar volumen principal, graves del subwoofer, muteo y conmutar entre entradas (Bluetooth, AUX y USB).',
@@ -325,13 +342,16 @@ export const timeline = [
     stars: 4,
     featured: true,
     image: 'projects/todus-api.png',
+    lastCommit: '2026-08-21',
     role: { es: 'EventBus, MessageQueue y transporte asíncrono', en: 'EventBus, MessageQueue & async transport' },
     desc: {
       es: 'SDK asíncrono y robusto para toDus. Diseñé e implementé una arquitectura basada en EventBus desacoplado, MessageQueue con reintentos automáticos, RateLimiter adaptativo, transporte WebSocket y gestión de MAM.',
       en: 'Robust asynchronous Python SDK for toDus. Engineered a decoupled EventBus architecture, MessageQueue with auto-retries, adaptive RateLimiter, WebSocket transport, and MAM event handling.'
     },
     tags: ['Python', 'AsyncIO', 'WebSockets', 'EventBus', 'SDK'],
-    code: 'https://github.com/ElJoker63/toDus-API'
+    code: 'https://github.com/ElJoker63/toDus-API',
+    demo: 'https://eljoker63.github.io/toDus-API',
+    release: 'https://github.com/ElJoker63/toDus-API/releases/latest'
   },
   {
     date: { es: 'Jul 2026', en: 'Jul 2026' },
@@ -341,6 +361,7 @@ export const timeline = [
     stars: 0,
     featured: true,
     image: 'projects/coolify-overlord.svg',
+    lastCommit: '2026-07-07',
     role: { es: 'Integración y skill de agente IA', en: 'AI agent skill integration' },
     desc: {
       es: 'Skill para el agente Hermes que administra servidores y despliegues en Coolify por lenguaje natural: inspecciona contenedores, logs y despliegues sin entrar al panel.',
@@ -357,6 +378,7 @@ export const timeline = [
     stars: 3,
     featured: true,
     image: 'projects/my-gateway.png',
+    lastCommit: '2026-07-24',
     role: { es: 'Diseño de gateway e infra local', en: 'Gateway design & local infra' },
     desc: {
       es: 'Gateway local entre agentes de IA y proveedores LLM. Incorpora rate-limiting, persistencia de memoria vectorial con Qdrant y caché en Redis para recortar consumo de API.',
@@ -373,13 +395,16 @@ export const timeline = [
     stars: 0,
     featured: true,
     image: 'projects/ipa-downloader.png',
+    lastCommit: '2026-09-14',
     role: { es: 'Desarrollo de app GUI multiplataforma', en: 'Cross-platform GUI app development' },
     desc: {
       es: 'Aplicación de escritorio moderna desarrollada para el ecosistema UDYAT con Wails (Go + Frontend moderno). Transforma herramientas CLI en una GUI completa para buscar, descargar y gestionar paquetes .ipa de Apple App Store.',
       en: 'Modern desktop GUI application built for the UDYAT ecosystem using Wails (Go + Modern Frontend). Transforms CLI tools into a full desktop suite to search and download iOS/macOS .ipa packages directly.'
     },
     tags: ['Go', 'Wails', 'Desktop GUI', 'iOS', 'CI/CD'],
-    code: 'https://github.com/ElJoker63/ipa-downloader'
+    code: 'https://github.com/ElJoker63/ipa-downloader',
+    demo: 'https://ipatool-eta.vercel.app',
+    release: 'https://github.com/ElJoker63/ipa-downloader/releases/latest'
   },
   {
     date: { es: 'Ago 2026', en: 'Aug 2026' },
@@ -389,6 +414,7 @@ export const timeline = [
     stars: 0,
     featured: true,
     image: 'projects/chat-ia-nvidea.jpg',
+    lastCommit: '2026-08-12',
     role: { es: 'Arquitectura completa en Jetpack Compose', en: 'Full Jetpack Compose architecture' },
     desc: {
       es: 'Aplicación Android premium (NVIDIA LLM Chat) construida íntegramente con Jetpack Compose para interactuar con la API NVIDIA NIM. Streaming en tiempo real, fondo neuronal interactivo, soporte multimodal y optimizaciones R8.',
@@ -404,6 +430,7 @@ export const timeline = [
     icon: 'ic-shield',
     stars: 0,
     image: 'projects/zcode-skills.svg',
+    lastCommit: '2026-08-10',
     role: { es: 'Investigación y seguridad', en: 'Security research & curation' },
     desc: {
       es: 'Colección curada de más de 870 skills de seguridad ofensiva y defensiva para ZCode: red team, threat intelligence, análisis de malware y cloud hardening.',
@@ -420,13 +447,15 @@ export const timeline = [
     stars: 1,
     featured: true,
     image: 'projects/tgdown-app.jpg',
+    lastCommit: '2026-09-13',
     role: { es: 'Desarrollador Android (Jetpack Compose)', en: 'Android Developer (Jetpack Compose)' },
     desc: {
       es: 'Cliente Android nativo (TelegramDL) con estética dark glassmorphism e iconos HugeIcons. Funciona como controlador remoto en tiempo real para servidores de descargas en la nube, con autenticación segura y sincronización.',
       en: 'Native Android client (TelegramDL) with dark glassmorphic styling and HugeIcons. Operates as a real-time remote dashboard for cloud download servers, featuring secure auth and background sync.'
     },
     tags: ['Kotlin', 'Jetpack Compose', 'HugeIcons', 'Glassmorphism'],
-    code: 'https://github.com/ElJoker63/tgdown-app'
+    code: 'https://github.com/ElJoker63/tgdown-app',
+    release: 'https://github.com/ElJoker63/tgdown-app/releases/latest'
   },
   {
     date: { es: 'Sep 2026', en: 'Sep 2026' },
@@ -437,13 +466,15 @@ export const timeline = [
     featured: true,
     current: true,
     image: 'projects/mediahub.jpg',
+    lastCommit: '2026-09-13',
     role: { es: 'Arquitectura, UI y desarrollo', en: 'Architecture, UI & engineering' },
     desc: {
       es: 'Aplicación de escritorio multiplataforma con estética inspirada en Apple TV para descubrir, reproducir y descargar películas y series, con gestor de descargas integrado.',
       en: 'Cross-platform desktop application featuring an Apple TV-inspired dark UI to browse, stream, and download movies and TV shows, with a built-in download engine.'
     },
     tags: ['Desktop', 'Cross-platform', 'UI/UX'],
-    code: 'https://github.com/ElJoker63/MediaHub'
+    code: 'https://github.com/ElJoker63/MediaHub',
+    release: 'https://github.com/ElJoker63/MediaHub/releases/latest'
   }
 ]
 
@@ -636,6 +667,22 @@ export const ui = {
   demo: {
     es: 'Demo',
     en: 'Demo'
+  },
+  liveDemo: {
+    es: 'Demo en vivo',
+    en: 'Live demo'
+  },
+  release: {
+    es: 'Descargar',
+    en: 'Download'
+  },
+  lastCommit: {
+    es: 'Último commit',
+    en: 'Last commit'
+  },
+  lastCommitTitle: {
+    es: 'Fecha del último commit en GitHub',
+    en: 'Date of last commit on GitHub'
   },
   viewScreenshot: {
     es: 'Ver captura',

@@ -4,6 +4,7 @@ import { GITHUB_USER } from '../data/portfolio.js'
 
 // Estado reactivo global en memoria
 const repoStars = reactive({})
+const repoPushedAt = reactive({})
 const userProfile = reactive({
   publicRepos: 164,
   followers: 41,
@@ -13,9 +14,21 @@ const isSynced = ref(false)
 const isSyncing = ref(false)
 let fetchPromise = null
 
+function recordRepo(repo) {
+  if (!repo?.name) return
+  if (typeof repo.stargazers_count === 'number') {
+    repoStars[repo.name] = repo.stargazers_count
+    repoStars[repo.name.toLowerCase()] = repo.stargazers_count
+  }
+  if (repo.pushed_at) {
+    repoPushedAt[repo.name] = repo.pushed_at
+    repoPushedAt[repo.name.toLowerCase()] = repo.pushed_at
+  }
+}
+
 /**
  * Consulta la API de GitHub con paginación para obtener todos los repositorios
- * y mapear las estrellas en tiempo real.
+ * y mapear las estrellas y fechas de commit en tiempo real.
  */
 export async function syncGitHubData() {
   if (isSynced.value || isSyncing.value) return fetchPromise
@@ -35,11 +48,7 @@ export async function syncGitHubData() {
       if (p1Res.status === 'fulfilled' && p1Res.value.ok) {
         const repos1 = await p1Res.value.json()
         if (Array.isArray(repos1)) {
-          repos1.forEach((repo) => {
-            if (repo?.name && typeof repo.stargazers_count === 'number') {
-              repoStars[repo.name] = repo.stargazers_count
-            }
-          })
+          repos1.forEach(recordRepo)
         }
       }
 
@@ -47,11 +56,7 @@ export async function syncGitHubData() {
       if (p2Res.status === 'fulfilled' && p2Res.value.ok) {
         const repos2 = await p2Res.value.json()
         if (Array.isArray(repos2)) {
-          repos2.forEach((repo) => {
-            if (repo?.name && typeof repo.stargazers_count === 'number') {
-              repoStars[repo.name] = repo.stargazers_count
-            }
-          })
+          repos2.forEach(recordRepo)
         }
       }
 
@@ -78,7 +83,7 @@ export async function syncGitHubData() {
 }
 
 /**
- * Hook para consumir estrellas y perfil de GitHub en cualquier componente.
+ * Hook para consumir estrellas, fechas de commit y perfil de GitHub en cualquier componente.
  */
 export function useGitHub() {
   // Dispara la sincronización en background si aún no se ha ejecutado
@@ -87,15 +92,29 @@ export function useGitHub() {
   }
 
   function getRepoStars(repoName, fallback = 0) {
-    return repoStars[repoName] !== undefined ? repoStars[repoName] : fallback
+    if (!repoName) return fallback
+    const key = repoName.toLowerCase()
+    return repoStars[repoName] !== undefined
+      ? repoStars[repoName]
+      : repoStars[key] !== undefined
+        ? repoStars[key]
+        : fallback
+  }
+
+  function getRepoPushedAt(repoName, fallback = null) {
+    if (!repoName) return fallback
+    const key = repoName.toLowerCase()
+    return repoPushedAt[repoName] || repoPushedAt[key] || fallback
   }
 
   return {
     repoStars,
+    repoPushedAt,
     userProfile,
     isSynced,
     isSyncing,
     getRepoStars,
+    getRepoPushedAt,
     syncGitHubData
   }
 }

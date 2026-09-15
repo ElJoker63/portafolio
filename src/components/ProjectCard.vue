@@ -11,13 +11,34 @@ const props = defineProps({
 
 defineEmits(['open-image'])
 
-const { t } = useI18n()
-const { getRepoStars, isSynced } = useGitHub()
+const { t, isEs } = useI18n()
+const { getRepoStars, getRepoPushedAt, isSynced } = useGitHub()
 const baseUrl = import.meta.env.BASE_URL
 
 // Estrellas reactivas: obtiene las de la API de GitHub en vivo con fallback local
 const currentStars = computed(() => {
   return getRepoStars(props.project.title, props.project.stars)
+})
+
+// Fecha del último commit: API en vivo de GitHub con fallback a lastCommit estático
+const rawLastCommit = computed(() => {
+  return getRepoPushedAt(props.project.title, props.project.lastCommit)
+})
+
+const formattedLastCommit = computed(() => {
+  const dateStr = rawLastCommit.value
+  if (!dateStr) return ''
+  try {
+    const d = new Date(dateStr)
+    if (isNaN(d.getTime())) return dateStr
+    return d.toLocaleDateString(isEs.value ? 'es-ES' : 'en-US', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    })
+  } catch {
+    return dateStr
+  }
 })
 </script>
 
@@ -63,7 +84,16 @@ const currentStars = computed(() => {
     </div>
 
     <h3 class="card__title">{{ project.title }}</h3>
-    <p class="card__meta mono">{{ t(project.date) }} · {{ t(project.category) }}</p>
+
+    <div class="card__meta-wrap">
+      <p class="card__meta mono">{{ t(project.date) }} · {{ t(project.category) }}</p>
+      <div v-if="formattedLastCommit" class="card__commit mono" :title="t(ui.lastCommitTitle)">
+        <SvgIcon name="ic-git-commit" :size="13" class="card__commit-icon" />
+        <span class="card__commit-label">{{ t(ui.lastCommit) }}:</span>
+        <strong class="card__commit-date">{{ formattedLastCommit }}</strong>
+      </div>
+    </div>
+
     <p v-if="project.role" class="card__role mono">
       <span class="card__role-label">{{ t(ui.roleLabel) }}</span> {{ t(project.role) }}
     </p>
@@ -77,8 +107,27 @@ const currentStars = computed(() => {
       <a :href="project.code" target="_blank" rel="noopener noreferrer" class="card__link">
         {{ t(ui.viewCode) }} <SvgIcon name="ic-arrow-right" :size="14" />
       </a>
-      <a v-if="project.demo" :href="project.demo" target="_blank" rel="noopener noreferrer" class="card__link card__link--demo">
-        {{ t(ui.demo) }} <SvgIcon name="ic-external" :size="14" />
+      <a
+        v-if="project.demo"
+        :href="project.demo"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="card__link card__link--demo"
+        :title="`${t(ui.liveDemo)}: ${project.title}`"
+      >
+        <SvgIcon name="ic-external" :size="14" />
+        {{ t(ui.liveDemo) }}
+      </a>
+      <a
+        v-if="project.release"
+        :href="project.release"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="card__link card__link--release"
+        :title="`${t(ui.release)}: ${project.title}`"
+      >
+        <SvgIcon name="ic-download" :size="14" />
+        {{ t(ui.release) }}
       </a>
       <button
         v-if="project.image"
@@ -160,9 +209,38 @@ const currentStars = computed(() => {
   font-family: var(--font-display);
   font-size: 1.22rem;
   letter-spacing: -0.01em;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
-.card__meta { font-size: 0.74rem; color: var(--dimmer); margin-bottom: 12px }
+.card__meta-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.card__meta { font-size: 0.74rem; color: var(--dimmer); margin-bottom: 0 }
+.card__commit {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.71rem;
+  color: var(--dim);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 3px 8px;
+  border-radius: 6px;
+  width: fit-content;
+}
+.card__commit-icon {
+  color: var(--cyan);
+  flex-shrink: 0;
+}
+.card__commit-label {
+  color: var(--dimmer);
+}
+.card__commit-date {
+  color: #a78bfa;
+  font-weight: 600;
+}
 .card__desc { font-size: 0.88rem; color: var(--dim); margin-bottom: 16px; flex-grow: 1 }
 
 .card__tags {
@@ -191,8 +269,10 @@ const currentStars = computed(() => {
   transition: color 0.3s, gap 0.3s var(--ease);
 }
 .card__link:hover { color: var(--cyan); gap: 9px }
-.card__link--demo { color: var(--dim) }
-.card__link--demo:hover { color: var(--text) }
+.card__link--demo { color: #34d399 }
+.card__link--demo:hover { color: #6ee7b7 }
+.card__link--release { color: #38bdf8 }
+.card__link--release:hover { color: #7dd3fc }
 .card__link--shot {
   background: none;
   border: none;

@@ -19,6 +19,7 @@ const icons = {
   'ic-smartphone': null,
   'ic-refresh': ['M21 12a9 9 0 1 1-3-6.7', 'M21 3v6h-6'],
   'ic-shield': ['M12 3 4 6v6c0 5 3.5 8.5 8 9 4.5-.5 8-4 8-9V6l-8-3Z', 'm9 12 2 2 4-4'],
+  'ic-git-commit': ['M3 12h6', 'M15 12h6', 'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z'],
   'ic-arrow-right': ['M5 12h14', 'M13 6l6 6-6 6'],
   'ic-external': ['M7 17 17 7', 'M8 7h9v9'],
   'ic-chevron-up': ['m6 14 6-6 6 6'],
