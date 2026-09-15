@@ -47,7 +47,7 @@ onBeforeUnmount(() => ctx?.revert())
       <div class="section__head reveal">
         <p class="section__kicker mono">// 01 · perfil</p>
         <h2 class="section__title">Sobre mí</h2>
-        <p class="section__lead">Backend, infraestructura y automatización desde Cuba.</p>
+        <p class="section__lead">Backend, infraestructura y automatización · De Cuba, actualmente en EE. UU.</p>
       </div>
 
       <div class="about">
@@ -66,7 +66,8 @@ onBeforeUnmount(() => ctx?.revert())
           <p class="about__handle mono">@ElJoker63</p>
           <p class="about__quote">«Focusing on Software Development, Infrastructure &amp; Automation»</p>
           <div class="about__badges">
-            <span class="badge"><SvgIcon name="ic-pin" :size="13" /> Cuba</span>
+            <span class="badge"><SvgIcon name="ic-pin" :size="13" /> EE. UU.</span>
+            <span class="badge"><SvgIcon name="ic-globe" :size="13" /> Cuba</span>
             <span class="badge"><SvgIcon name="ic-users" :size="13" /> AEware Developers</span>
             <span class="badge"><SvgIcon name="ic-shield" :size="13" /> Open Source</span>
           </div>
@@ -75,11 +76,11 @@ onBeforeUnmount(() => ctx?.revert())
         <div class="about__body">
           <p>
             ¡Hola! Soy <strong>Víctor Morejón</strong> (en GitHub y la comunidad dev conocido como <strong>ElJoker63</strong>).
-            Soy desarrollador de software radicado en Cuba, especializado en <strong>backend, infraestructura y automatización</strong>.
+            Soy desarrollador de software de origen cubano, actualmente radicado en <strong>Estados Unidos</strong>, especializado en <strong>backend, infraestructura y automatización</strong>.
           </p>
           <p>
-            Aprender y programar en un entorno con recursos y conectividad limitados me dio una perspectiva clara:
-            <strong>la optimización, la eficiencia y la resiliencia no son opcionales</strong>. Me muevo con fluidez entre bots
+            Haber comenzado y construido mis primeras soluciones en Cuba, bajo entornos con recursos y conectividad limitados, me forjó una filosofía técnica clara:
+            <strong>la optimización, la eficiencia y la resiliencia no son negociables</strong>. Me muevo con fluidez entre bots
             de alta concurrencia, APIs robustas con FastAPI y entornos auto-hospedados con Docker; lo que me apasiona es que cada
             solución funcione sola, sin fricción y resolviendo una necesidad real.
           </p>
