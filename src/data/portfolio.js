@@ -324,7 +324,7 @@ export const timeline = [
     title: 'z407-remote-control',
     icon: 'ic-volume',
     stars: 0,
-    image: 'projects/z407-remote.svg',
+    image: 'projects/z407-remote.png',
     lastCommit: '2026-07-12',
     role: { es: 'Ingeniería inversa BLE y cliente Android', en: 'BLE reverse engineering & Android app' },
     desc: {
